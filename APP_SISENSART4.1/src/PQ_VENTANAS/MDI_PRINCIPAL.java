@@ -114,6 +114,7 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         jMenuItem20 = new javax.swing.JMenuItem();
         jMenuItem24 = new javax.swing.JMenuItem();
         jMenuItem29 = new javax.swing.JMenuItem();
+        jMenu11 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SISENSART  V-3.0- SISTEMA DE ENTRADAS Y SALIDAS DE ARTÍCULOS - LOGÍSTICA EMPRESARIAL.");
@@ -629,6 +630,14 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
 
         menuBar.add(jMenu6);
 
+        jMenu11.setText("Baño");
+        jMenu11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu11MouseClicked(evt);
+            }
+        });
+        menuBar.add(jMenu11);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -875,6 +884,11 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem27ActionPerformed
 
+    private void jMenu11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu11MouseClicked
+        // TODO add your handling code here:
+        System.out.println("algooooooooooooooooooooooooooooooooooooooooooooo");
+    }//GEN-LAST:event_jMenu11MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -928,6 +942,7 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
