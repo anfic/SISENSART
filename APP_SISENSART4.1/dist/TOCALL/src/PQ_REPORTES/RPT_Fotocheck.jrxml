@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="257" pageHeight="200" orientation="Landscape" columnWidth="217" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="34cbb32d-0cdf-4833-b441-0dbfd6bb8354">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="169"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_ficha" class="java.lang.String"/>
+	<parameter name="p_logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[SELECT
+     ficha_datos.`id_ficha` AS ficha_datos_id_ficha,
+     ficha_datos.`fecha_ingreso` AS ficha_datos_fecha_ingreso,
+     personal.`dni` AS personal_dni,
+     personal.`apellido_paterno` AS personal_apellido_paterno,
+     personal.`apellido_materno` AS personal_apellido_materno,
+     personal.`nombres` AS personal_nombres,
+     obra_planta.`descripcion` AS obra_planta_descripcion,
+     personal.`foto` AS personal_foto,
+     personal.`f_exa_med` AS personal_f_exa_med,
+     personal.`f_rev_exa_med` AS personal_f_rev_exa_med,
+     personal.`estado_exa_med` AS personal_estado_exa_med
+FROM
+     `personal` personal INNER JOIN `ficha_datos` ficha_datos ON personal.`dni` = ficha_datos.`dni`
+     INNER JOIN `obra_planta` obra_planta ON ficha_datos.`id_obra_planta` = obra_planta.`id_obra_planta`
+WHERE
+ficha_datos.`id_ficha`=$P{p_ficha}]]>
+	</queryString>
+	<field name="ficha_datos_id_ficha" class="java.lang.Integer"/>
+	<field name="ficha_datos_fecha_ingreso" class="java.sql.Date"/>
+	<field name="personal_dni" class="java.lang.String"/>
+	<field name="personal_apellido_paterno" class="java.lang.String"/>
+	<field name="personal_apellido_materno" class="java.lang.String"/>
+	<field name="personal_nombres" class="java.lang.String"/>
+	<field name="obra_planta_descripcion" class="java.lang.String"/>
+	<field name="personal_foto" class="java.io.InputStream"/>
+	<field name="personal_f_exa_med" class="java.sql.Date"/>
+	<field name="personal_f_rev_exa_med" class="java.sql.Date"/>
+	<field name="personal_estado_exa_med" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="36" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="76" height="32" uuid="5957d493-4c53-4861-84ab-9d20e15201ba"/>
+				<imageExpression><![CDATA[$P{p_logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="76" y="0" width="139" height="20" uuid="314318cf-1aa0-4793-a820-bd5748bd025f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FOTOCHECK PERSONAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="76" y="20" width="49" height="12" uuid="b70c93cf-6fee-4598-b2f2-bccb388d8860"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[F. Impresión:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="125" y="20" width="92" height="12" uuid="286cf6f0-50f5-41c7-b945-41c9e2c713c0"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="34" width="217" height="1" uuid="b7ea6d73-20e4-4bad-a045-7cfab6956960"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="124" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="2" width="43" height="12" uuid="6d29f153-768e-4a41-a369-1eb744edaa2b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nro. Ficha:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="45" y="2" width="80" height="12" backcolor="#FFFF66" uuid="9d2bdec7-ff9b-46c7-bb2f-6bafda411913"/>
+			</rectangle>
+			<textField>
+				<reportElement x="45" y="2" width="80" height="12" uuid="7b1af1e7-8c82-42aa-8587-51093b4b70d6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ficha_datos_id_ficha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="14" width="43" height="12" uuid="1eb12475-2d56-490f-a8d2-1a271cec577f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="26" width="43" height="12" uuid="494eb816-a194-48a6-a275-7c29033264a2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ap. Paterno:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="38" width="43" height="12" uuid="1b4d59c4-a9b3-412d-a657-43f457f5401f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ap. Materno:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="50" width="43" height="12" uuid="69308ca3-2ee3-40ca-9a86-da1e662ee9de"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres:]]></text>
+			</staticText>
+			<image>
+				<reportElement x="163" y="2" width="52" height="60" uuid="f5c9f4ca-078a-4cc8-954d-839efc1bbcf9"/>
+				<imageExpression><![CDATA[$F{personal_foto}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="45" y="26" width="100" height="12" uuid="2847ca67-3f28-49b2-b9da-4d000c8dc26c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{personal_apellido_paterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="14" width="100" height="12" uuid="9fac9e81-c04a-443d-b7a3-9a060dadd8a7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{personal_dni}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="38" width="100" height="12" uuid="ad0dddb5-66be-43c2-9671-8c1db8276e38"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{personal_apellido_materno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="50" width="100" height="12" uuid="b7913a37-4366-4173-9509-f6b25fe746e1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{personal_nombres}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="64" width="213" height="1" uuid="61547ce9-1c73-47d2-a0d9-9e0c046cb871"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="67" width="43" height="12" uuid="0aeaafef-754e-4f89-b4c7-ccf1850c19a6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[F. Ingreso:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="45" y="67" width="31" height="12" uuid="aa9ac451-83a1-4b91-8411-e1e4dd7b4270"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ficha_datos_fecha_ingreso}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="145" y="67" width="70" height="12" uuid="a9b08f56-d1e2-4814-85ff-2223ff9087c8"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{ficha_datos_id_ficha}+"-"+$F{personal_dni}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<staticText>
+				<reportElement x="2" y="79" width="43" height="12" uuid="4b579f10-bee5-43a2-abaa-0e95bae4fc82"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[F. Ex. Med.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="45" y="79" width="31" height="12" uuid="00104305-dcdc-4daa-88e2-5a6f39823e03"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{personal_f_exa_med}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="76" y="79" width="59" height="12" uuid="6b0fae0c-0729-47e8-9f53-18bd1e18329d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[F. Rev. Ex. Med.:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="135" y="79" width="31" height="12" uuid="9b95af36-3ca0-45d3-b021-fe61474bda66"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{personal_f_rev_exa_med}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="166" y="79" width="49" height="12" uuid="6fda1d9f-1e0b-4ff7-b415-67f72c1714f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{personal_estado_exa_med}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="100" width="213" height="24" uuid="c9088f2e-a7d4-47e1-8c44-1495788402c5"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{obra_planta_descripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="91" width="59" height="9" uuid="96b7c0cf-aae7-437e-9250-485984790bf9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Obra:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>

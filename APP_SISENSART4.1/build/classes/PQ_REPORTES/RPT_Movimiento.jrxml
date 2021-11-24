@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="425" pageHeight="842" columnWidth="385" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="043f1aa8-d5b1-48ab-8408-343ee9bdfa05">
+	<property name="ireport.zoom" value="1.24184264611831"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_id" class="java.lang.String"/>
+	<parameter name="p_logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[SELECT
+     movimiento.`id_movimiento` AS movimiento_id_movimiento,
+     movimiento.`fecha` AS movimiento_fecha,
+     movimiento.`tipo_movimiento` AS movimiento_tipo_movimiento,
+     movimiento.`motivo` AS movimiento_motivo,
+     movimiento.`documento` AS movimiento_documento,
+     movimiento.`nro_documento` AS movimiento_nro_documento,
+     movimiento.`estado` AS movimiento_estado,
+     detalle_movimiento.`cantidad` AS detalle_movimiento_cantidad,
+     detalle_movimiento.`peso` AS detalle_movimiento_peso,
+     detalle_movimiento.`observacion` AS detalle_movimiento_observacion,
+     detalle_movimiento.`unidad` AS detalle_movimiento_unidad,
+     material.`descripcion` AS material_descripcion,
+     almacen.`id_almacen` AS almacen_id_almacen,
+     almacen.`descripcion` AS almacen_descripcion,
+     almacen.`direccion` AS almacen_direccion,
+     detalle_movimiento.`id_material` AS detalle_movimiento_id_material,
+     movimiento.`placa` AS movimiento_placa
+FROM
+     `movimiento` movimiento INNER JOIN `detalle_movimiento` detalle_movimiento ON movimiento.`id_movimiento` = detalle_movimiento.`id_movimiento`
+     INNER JOIN `material` material ON detalle_movimiento.`id_material` = material.`id_material`
+     INNER JOIN `almacen` almacen ON detalle_movimiento.`id_almacen` = almacen.`id_almacen`
+WHERE
+     movimiento.`id_movimiento` = $P{p_id}]]>
+	</queryString>
+	<field name="movimiento_id_movimiento" class="java.lang.Integer"/>
+	<field name="movimiento_fecha" class="java.sql.Timestamp"/>
+	<field name="movimiento_tipo_movimiento" class="java.lang.String"/>
+	<field name="movimiento_motivo" class="java.lang.String"/>
+	<field name="movimiento_documento" class="java.lang.String"/>
+	<field name="movimiento_nro_documento" class="java.lang.String"/>
+	<field name="movimiento_estado" class="java.lang.String"/>
+	<field name="detalle_movimiento_cantidad" class="java.math.BigDecimal"/>
+	<field name="detalle_movimiento_peso" class="java.lang.String"/>
+	<field name="detalle_movimiento_observacion" class="java.lang.String"/>
+	<field name="detalle_movimiento_unidad" class="java.lang.String"/>
+	<field name="material_descripcion" class="java.lang.String"/>
+	<field name="almacen_id_almacen" class="java.lang.Integer"/>
+	<field name="almacen_descripcion" class="java.lang.String"/>
+	<field name="almacen_direccion" class="java.lang.String"/>
+	<field name="detalle_movimiento_id_material" class="java.lang.Integer"/>
+	<field name="movimiento_placa" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="140" y="0" width="245" height="20" uuid="7b478f4f-00e7-4a3a-93c6-046d92bdf4f9"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONSTRUCTORA MLS SAC]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="133" height="60" uuid="288763c1-8081-46fb-8659-bcb07b166349"/>
+				<imageExpression><![CDATA[$P{p_logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="140" y="20" width="245" height="20" uuid="7617a033-a1cc-4ae4-812d-f1209bfac73c"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MOVIMIENTO DE MATERIALES]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="284" y="40" width="100" height="20" uuid="00ab8721-39ef-4484-a575-552d4023155b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="127" splitType="Stretch">
+			<textField>
+				<reportElement x="74" y="2" width="91" height="20" uuid="5e2c7ee9-35cc-4317-9d0e-110b0ba80160"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{movimiento_id_movimiento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="2" width="71" height="20" uuid="9e754aae-8783-4886-b7e9-2281d469d7af"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[MOVIMIENTO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="74" y="22" width="43" height="20" uuid="9d2f68d8-0cf0-4ff3-9711-a6c93ce23b9e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{movimiento_fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="22" width="71" height="20" uuid="9294699f-6191-47fa-a82b-825401d1f51c"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="74" y="42" width="311" height="20" uuid="2d6085ea-e49d-46ba-bdc5-0b1cc83e723e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{movimiento_tipo_movimiento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="42" width="71" height="20" uuid="6dd538f3-32be-487b-a42a-5e1ff3c1f1fc"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[TIPO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="74" y="62" width="311" height="20" uuid="6edacb93-b65d-4ba2-8e26-796bf2e6356d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{movimiento_motivo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="62" width="71" height="20" uuid="a7431de6-4ff0-4c9e-a41f-4e811d7c3782"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[DOCUMENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="82" width="71" height="20" uuid="fd8a8150-690c-4bf2-992b-36a8fc1ab45d"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[NRO. DOC:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="74" y="82" width="100" height="20" uuid="3a29c546-c829-4700-9acf-33a041ef31d0"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{movimiento_nro_documento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="102" width="71" height="20" uuid="90783119-faad-4422-8bbf-3a2579f2f793"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[PLACA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="74" y="102" width="311" height="20" uuid="c656a5ab-39c4-4a58-bb16-880a84c5c253"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{movimiento_placa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement x="1" y="1" width="42" height="20" backcolor="#99141D" uuid="01ee6431-62eb-45ba-ac18-4ae026ee8265"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="43" y="1" width="242" height="20" backcolor="#99141D" uuid="77c98f73-2006-45d8-a099-01deb9b4d13f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="285" y="1" width="57" height="20" backcolor="#99141D" uuid="dd224371-298a-4700-b3d0-47d691cc6deb"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="342" y="1" width="43" height="20" backcolor="#99141D" uuid="adee924a-0a15-45a7-98d5-1706a00d294b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="43" height="20" forecolor="#FFFFFF" uuid="734441f5-f94d-4dea-838d-739d0b7e9c46"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[COD.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="43" y="0" width="242" height="20" forecolor="#FFFFFF" uuid="27cb2e9c-207e-4eee-be69-98d5e4fdee0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[MATERIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="0" width="57" height="20" forecolor="#FFFFFF" uuid="d515b59e-1025-41f0-9e54-76483c5e1416"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="0" width="43" height="20" forecolor="#FFFFFF" uuid="3aa8685e-b37a-49d8-badd-8f5b152247b6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[UNIDAD]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="51" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="43" height="20" uuid="a70ab3b4-c110-4270-99d2-b4b61827e02a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_movimiento_id_material}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="0" width="231" height="20" uuid="ba02ed5b-83f3-4067-b417-26403babd378"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{material_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="0" width="57" height="20" uuid="d8dc949d-5fe1-43de-a278-95b6f4514cd2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_movimiento_cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="0" width="43" height="20" uuid="a7f61a7f-3302-4c6d-b92b-2f7d47e943c0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_movimiento_unidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="20" width="82" height="14" uuid="e0669ea4-a0e8-4467-8981-25ab4c7f3963"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[OBSERVACIÓN:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="85" y="20" width="300" height="14" uuid="6248e147-6a63-4f86-9c8f-33deebf44ee4"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalle_movimiento_observacion}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="3" y="49" width="382" height="1" uuid="2906767e-57dd-407a-b9d6-e43bec7f15a5"/>
+			</line>
+			<staticText>
+				<reportElement x="3" y="34" width="82" height="14" uuid="38436985-f05e-4db2-b5fc-b63bb502080d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ALMACÉN:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="85" y="34" width="300" height="14" uuid="1db9a8b8-86d0-4efc-b549-2e1dcceb5ddd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{almacen_descripcion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="2" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="47" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="203" y="28" width="36" height="15" uuid="2f83c3d3-bb8c-44d8-9a40-9f412766525a"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="10" y="10" width="375" height="1" forecolor="#99141D" backcolor="#009933" uuid="88b48f4f-05d2-4985-a86c-1b29bb7d4b58"/>
+			</line>
+			<staticText>
+				<reportElement x="133" y="11" width="110" height="15" forecolor="#99141D" uuid="7b33c1b7-eb34-4e29-8002-435a1976d389"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Huaraz-Ancash-Perú]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="155" y="28" width="48" height="15" uuid="41227b67-8085-4fc6-a28d-4211c8cf9938"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="92" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="72" width="100" height="20" uuid="0b947007-0658-433c-8808-57c60f23aa0d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ALMACENERO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="72" width="100" height="20" uuid="95f4f780-a581-443f-8b4d-4810a0b17b34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[V°B°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="72" width="100" height="20" uuid="c9b5f5ed-ab1e-42c0-802a-5c5a90d4838d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[LOGÍSTICA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="71" width="98" height="1" uuid="e888d311-7ff7-4cd9-86e5-6c27e38b5b2c"/>
+			</line>
+			<line>
+				<reportElement x="147" y="70" width="96" height="1" uuid="652110f8-1371-4037-82be-923c007826cb"/>
+			</line>
+			<line>
+				<reportElement x="285" y="69" width="99" height="1" uuid="5cba2f3f-58f2-4337-930d-44dd67025c6b"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

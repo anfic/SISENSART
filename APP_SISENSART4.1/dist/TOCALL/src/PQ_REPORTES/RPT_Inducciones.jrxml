@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RPT_Inducciones" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="84504b19-14e0-44a7-83e8-cf0f1f71a564">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="15"/>
+	<parameter name="p_dni" class="java.lang.String"/>
+	<parameter name="p_logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[SELECT
+     induccion_puesto.`id_tema` AS induccion_puesto_id_tema,
+     tema_induccion.`descripcion` AS tema_induccion_descripcion,
+     induccion_puesto.`dni` AS induccion_puesto_dni,
+     personal.`apellido_paterno` AS personal_apellido_paterno,
+     personal.`apellido_materno` AS personal_apellido_materno,
+     personal.`nombres` AS personal_nombres,
+     personal.`fecha_nac` AS personal_fecha_nac,
+     personal.`foto` AS personal_foto,
+     personal.`e_mail` AS personal_e_mail,
+     personal.`celular` AS personal_celular,
+     personal.`direccion` AS personal_direccion,
+     induccion_puesto.`fecha_induccion` AS induccion_puesto_fecha_induccion,
+     induccion_puesto.`observaciones` AS induccion_puesto_observaciones,
+     induccion_puesto.`estado` AS induccion_puesto_estado,
+     induccion_puesto.`realizado_por` AS induccion_puesto_realizado_por
+FROM
+     `personal` personal INNER JOIN `induccion_puesto` induccion_puesto ON personal.`dni` = induccion_puesto.`dni`
+     INNER JOIN `tema_induccion` tema_induccion ON induccion_puesto.`id_tema` = tema_induccion.`id_tema` WHERE induccion_puesto.`dni`=$P{p_dni}]]>
+	</queryString>
+	<field name="induccion_puesto_id_tema" class="java.lang.Integer"/>
+	<field name="tema_induccion_descripcion" class="java.lang.String"/>
+	<field name="induccion_puesto_dni" class="java.lang.String"/>
+	<field name="personal_apellido_paterno" class="java.lang.String"/>
+	<field name="personal_apellido_materno" class="java.lang.String"/>
+	<field name="personal_nombres" class="java.lang.String"/>
+	<field name="personal_fecha_nac" class="java.lang.String"/>
+	<field name="personal_foto" class="java.io.InputStream"/>
+	<field name="personal_e_mail" class="java.lang.String"/>
+	<field name="personal_celular" class="java.lang.String"/>
+	<field name="personal_direccion" class="java.lang.String"/>
+	<field name="induccion_puesto_fecha_induccion" class="java.lang.String"/>
+	<field name="induccion_puesto_observaciones" class="java.lang.String"/>
+	<field name="induccion_puesto_estado" class="java.lang.String"/>
+	<field name="induccion_puesto_realizado_por" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="126" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="196" height="81" uuid="e5150335-144f-4b7e-bf94-a145bdab7921"/>
+				<imageExpression><![CDATA[$P{p_logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="87" width="555" height="37" uuid="68f51281-6bce-4c7b-a4f4-cdfab87d9562"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Baskerville Old Face" size="24" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de Inducción al Puesto de Trabajo]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="355" y="0" width="200" height="50" uuid="625ca148-a798-4187-a355-614ad21cdeb2"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{induccion_puesto_id_tema}+"-"+$F{induccion_puesto_dni}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="95" splitType="Stretch">
+			<textField>
+				<reportElement x="96" y="0" width="342" height="20" uuid="aa6332e8-bb84-433a-8cc3-5667bd3e663a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{personal_apellido_paterno}+" "+$F{personal_apellido_materno}+" "+$F{personal_nombres}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="0" width="84" height="20" uuid="5073d57f-d48d-4871-a4d2-600401041b89"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Personal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="20" width="84" height="20" uuid="d00c6ba4-1328-4cae-8785-cfa86cbde487"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DNI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="0" width="9" height="20" uuid="ef90ee1e-bde4-45e1-ae62-e5e67bbe798f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="20" width="9" height="20" uuid="b6efee08-dc35-4d67-b5a4-3b522fe33aae"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="99" y="20" width="339" height="20" uuid="cfcc89a1-f6ac-4aab-9cbb-f97eaa60ff49"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{induccion_puesto_dni}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="459" y="0" width="96" height="80" uuid="2f0b7ae5-7ed4-4b77-9044-f764021b0f9b"/>
+				<imageExpression><![CDATA[$F{personal_foto}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="3" y="40" width="84" height="20" uuid="1bceb410-2fbf-4696-88a8-41c8d92fd8f6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Celular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="40" width="9" height="20" uuid="ad9dcb63-c8b4-43e5-8a5b-2b784f652a68"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="99" y="40" width="339" height="20" uuid="900c7d50-afa4-4fb4-83ba-dd2334ab7664"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{personal_celular}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="60" width="84" height="20" uuid="a28857dd-960c-496b-89f5-5f51a346faaf"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-mail]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="60" width="9" height="20" uuid="9c393f2a-1b13-46af-9a42-fd88cb08850f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="99" y="60" width="339" height="20" uuid="2f9a1387-954a-43d0-b6fc-3117dbd6aaed"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{personal_e_mail}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="7" y="89" width="538" height="1" uuid="93d6232a-4f99-48ee-b26a-f7cc0eefbf3e"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<rectangle>
+				<reportElement x="301" y="0" width="100" height="20" backcolor="#99141D" uuid="0a1063f1-25d2-4cfb-9fde-ff44b69d3c25"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="301" height="20" backcolor="#99141D" uuid="5db89b51-f605-46db-ab02-f84f16ed22d4"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="401" y="0" width="154" height="20" backcolor="#99141D" uuid="fcf6e6f7-7e56-4d35-8bdb-c55a8083d1f9"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="301" height="20" forecolor="#FFFFFF" uuid="5ec133af-5495-41ee-b6a9-905acbf9e878"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TEMA DE INDUCCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="d95730cb-51b2-490b-8b22-294cb8bda434"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="401" y="0" width="154" height="20" forecolor="#FFFFFF" uuid="ee4eef5d-134c-4c54-a3b2-0693ae18ecff"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INSTRUCTOR]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="301" height="20" uuid="28c0f359-ce3c-4e40-a9bb-381c0d96087d"/>
+				<textFieldExpression><![CDATA[$F{tema_induccion_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="301" y="0" width="100" height="20" uuid="baf1cbf9-295d-4929-b898-7f339cc8efa6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{induccion_puesto_fecha_induccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="401" y="0" width="154" height="20" uuid="5920656e-421f-4289-a5ae-560da697ae8b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{induccion_puesto_realizado_por}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="7" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement x="225" y="23" width="100" height="20" forecolor="#99141D" uuid="ee08aa54-d277-4e31-83ed-017b95a918a4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Huaraz-Ancash-Perú]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="10" width="541" height="3" forecolor="#FF0000" uuid="68f7e8ae-c914-486f-be88-0b9a4f5a7336"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="68" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="384" y="46" width="171" height="20" uuid="306b69ab-9383-48ca-b04b-6bb2aaa29e52"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

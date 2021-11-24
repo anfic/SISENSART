@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RPT_Materiales_General" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3c0b022d-a189-45af-852f-dee441843e94">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_obra" class="java.lang.String"/>
+	<parameter name="p_logo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     orden_compra.`obra` AS orden_compra_obra,
+     material.`id_material` AS material_id_material,
+     material.`descripcion` AS material_descripcion,
+     detalle_orden.`unidad` AS detalle_orden_unidad,
+     tipo_material.`descripcion` AS tipo_material_descripcion,
+     sum(detalle_orden.`cantidad`) AS detalle_orden_cantidad,
+     sum(detalle_orden.`p_total`) AS detalle_orden_p_total
+FROM
+     `orden_compra` orden_compra INNER JOIN `detalle_orden` detalle_orden ON orden_compra.`id_orden` = detalle_orden.`id_orden`
+     INNER JOIN `material` material ON detalle_orden.`id_material` = material.`id_material`
+     INNER JOIN `tipo_material` tipo_material ON material.`id_tipo` = tipo_material.`id_tipo` WHERE orden_compra.`obra`=$P{p_obra} group by material_descripcion;]]>
+	</queryString>
+	<field name="orden_compra_obra" class="java.lang.String"/>
+	<field name="material_id_material" class="java.lang.Integer"/>
+	<field name="material_descripcion" class="java.lang.String"/>
+	<field name="detalle_orden_unidad" class="java.lang.String"/>
+	<field name="tipo_material_descripcion" class="java.lang.String"/>
+	<field name="detalle_orden_cantidad" class="java.math.BigDecimal"/>
+	<field name="detalle_orden_p_total" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="121" y="0" width="434" height="59" uuid="b9ebc09a-0d64-4372-8c85-7754b2c34fe1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Baskerville Old Face" size="24" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE COMPRA DE MATERIAL POR OBRA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="121" height="79" uuid="8df8e043-f24c-4a7e-8d95-554966c91845"/>
+				<imageExpression><![CDATA[$P{p_logo}]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="398" y="59" width="157" height="20" uuid="34ee5e39-4d8d-4bb0-a6ef-b4d66f72745d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="62" height="20" uuid="3177bd72-12ff-4dd1-917e-e058c359f2dc"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Obra/Planta:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="62" y="0" width="493" height="20" uuid="850c4813-d031-47d8-91f4-d84f3f2c5cac"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{orden_compra_obra}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="1" width="157" height="20" forecolor="#000000" backcolor="#99141D" uuid="1571fd1b-0e5b-4a1e-804c-32593adda591"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="2" width="156" height="19" uuid="240941fd-9ac0-4226-a587-17748fe1d3e2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Material]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="157" y="1" width="100" height="20" forecolor="#000000" backcolor="#99141D" uuid="5a0f529b-399d-4ff5-a6e6-0289f5b246f3"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="157" y="2" width="100" height="20" uuid="469ff1a7-aa3f-4dea-8248-d207d2476fb4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[UNIDAD]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="257" y="1" width="116" height="20" forecolor="#000000" backcolor="#99141D" uuid="691dc473-a480-4870-ae5b-ea01b1c70cd7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="257" y="2" width="116" height="20" uuid="19c77518-61b9-4ae9-9801-a558f9abcbba"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TIPO MATERIAL]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="373" y="1" width="92" height="20" forecolor="#000000" backcolor="#99141D" uuid="f1be9e6b-7606-4055-b164-01b680f80415"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="373" y="2" width="92" height="20" uuid="71ccd1e9-d8c9-4bd4-9782-8091032cc0a8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="463" y="1" width="92" height="20" forecolor="#000000" backcolor="#99141D" uuid="80fa453d-653b-4ea5-b550-7c0fa5fa668d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="463" y="2" width="92" height="20" uuid="0475e651-6e2c-4623-b02c-d74d6bcb69c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="11" y="0" width="146" height="20" uuid="ac38a5f1-745d-4907-80d9-ecefcbc5127f"/>
+				<textFieldExpression><![CDATA[$F{material_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="157" y="0" width="100" height="20" uuid="8a1f9730-dab3-47cb-81a0-38f597c1fce1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{detalle_orden_unidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="257" y="0" width="116" height="20" uuid="d6206842-50cd-4eb5-b6af-1b49a61fec9f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tipo_material_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="373" y="0" width="92" height="20" uuid="0556149a-114c-4912-8634-7b0649197d5a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{detalle_orden_cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="465" y="0" width="90" height="20" uuid="0824ff3c-2e07-41d4-8e5a-4b3adc3b3836"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{detalle_orden_p_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="8" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="223" y="12" width="100" height="20" forecolor="#99141D" uuid="3537953e-1782-401b-853f-23eb689df9b5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Huaraz-Ancash-Perú]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="10" width="554" height="2" forecolor="#FF0000" uuid="fe4c84f7-ef1c-467c-bcb8-4f30c80ffffc"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

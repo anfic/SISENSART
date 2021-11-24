@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="051bbf8f-252e-45c1-9780-6071ed5fb638">
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     orden_compra.`id_orden` AS ORDEN,
+     orden_compra.`fecha` AS FECHA_COMPRA,
+     proveedor.`razon` AS PROVEEDOR,
+     proveedor.`representante` AS REPRESENTANTE,
+     proveedor.`ruc` AS RUC,
+     material.`descripcion` AS DESCRIPCION_MATERIAL,
+     detalle_orden.`unidad` AS UNIDAD_MEDIDA,
+     detalle_orden.`cantidad` AS CANTIDAD,
+     detalle_orden.`p_unitario` AS PRECIO
+FROM
+     `material` material INNER JOIN `detalle_orden` detalle_orden ON material.`id_material` = detalle_orden.`id_material`
+     INNER JOIN `orden_compra` orden_compra ON detalle_orden.`id_orden` = orden_compra.`id_orden`
+     INNER JOIN `proveedor` proveedor ON orden_compra.`id_proveedor` = proveedor.`id_proveedor`
+WHERE
+     (fecha BETWEEN '2017-03-01'AND '2017-03-31')
+ORDER BY
+     FECHA_COMPRA ASC]]>
+	</queryString>
+	<field name="ORDEN" class="java.lang.Integer"/>
+	<field name="FECHA_COMPRA" class="java.sql.Date"/>
+	<field name="PROVEEDOR" class="java.lang.String"/>
+	<field name="REPRESENTANTE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RUC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DESCRIPCION_MATERIAL" class="java.lang.String"/>
+	<field name="UNIDAD_MEDIDA" class="java.lang.String"/>
+	<field name="CANTIDAD" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRECIO" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
