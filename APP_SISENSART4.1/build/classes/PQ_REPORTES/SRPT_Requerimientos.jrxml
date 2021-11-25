@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SRPT_Requerimientos" columnCount="2" printOrder="Horizontal" pageWidth="250" pageHeight="50" orientation="Landscape" columnWidth="125" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="607927b2-af9d-4414-b9a1-172ba8f49f2a">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="P_rq" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     detalle_requerimiento.`id_requerimiento` AS detalle_requerimiento_id_requerimiento,
+     tipo_material.`descripcion` AS tipo_material_descripcion
+FROM
+     `material` material INNER JOIN `detalle_requerimiento` detalle_requerimiento ON material.`id_material` = detalle_requerimiento.`id_material`
+     INNER JOIN `tipo_material` tipo_material ON material.`id_tipo` = tipo_material.`id_tipo`
+WHERE detalle_requerimiento.`id_requerimiento`=$P{P_rq} GROUP BY tipo_material.`descripcion`]]>
+	</queryString>
+	<field name="detalle_requerimiento_id_requerimiento" class="java.lang.Integer"/>
+	<field name="tipo_material_descripcion" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="30">
+			<textField>
+				<reportElement x="30" y="5" width="88" height="20" uuid="d2d379ae-151c-4e14-b239-7f05fa8cc106"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_material_descripcion}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="10" y="6" width="17" height="18" backcolor="#FF3333" uuid="9fa3c1ad-f7af-4254-9c90-491e3cef0567"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="4" width="17" height="20" uuid="75cd2432-9929-4eb8-bdb3-01fd82bb8432"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

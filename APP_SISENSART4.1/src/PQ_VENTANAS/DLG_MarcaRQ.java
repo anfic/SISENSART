@@ -9,57 +9,20 @@ import PQ_CONTROLADORES.CLS_Controlador;
 
 /**
  *
- * @author USUARIO
+ * @author ANDY CLARK
  */
-public class DLG_CARGOS extends javax.swing.JDialog {
+public class DLG_MarcaRQ extends javax.swing.JDialog {
 
     CLS_Controlador ctrl = new CLS_Controlador();
 
     /**
-     * Creates new form DLG_Cargos
+     * Creates new form DLG_MarcaRQ
      */
-    public DLG_CARGOS(java.awt.Frame parent, boolean modal) {
+    public DLG_MarcaRQ(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         ctrl.CerrarVentanaESC(this);
         Cancelar();
-    }
-
-    private void Grabar() {
-        if (TXcargo.getText().trim().length() == 0) {
-            ctrl.mensaje.MensajeAlerta("Ud. no ingresó el cargo");
-            TXcargo.requestFocus();
-        } else {
-            ctrl.GrabarData("cargo", "descripcion", "'" + TXcargo.getText().trim().toUpperCase() + "'");
-            Cancelar();
-        }
-    }
-
-    private void Modificar() {
-        if (TXcargo.getText().trim().length() == 0) {
-            ctrl.mensaje.MensajeAlerta("Ud. no ingresó el cargo");
-            TXcargo.requestFocus();
-        } else {
-            ctrl.ActualizarData("cargo", "descripcion='" + TXcargo.getText().trim() + "'", "id_cargo='" + TBcargo.getValueAt(TBcargo.getSelectedRow(), 0).toString().trim() + "'");
-            Cancelar();
-        }
-    }
-
-    private void Cancelar() {
-        ctrl.VisualizarEnTabla("cargo", TBcargo, "");
-        TXcargo.setText("");
-        ActivaBotones(true, false);
-    }
-
-    private void ActivaBotones(boolean a, boolean b) {
-        BTn.setEnabled(a);
-        BTm.setEnabled(b);
-    }
-
-    private void PasarDatos() {
-        TXcargo.setText(TBcargo.getValueAt(TBcargo.getSelectedRow(), 1).toString().trim());
-        ActivaBotones(false, true);
-        ctrl.Maracar(TXcargo);
     }
 
     /**
@@ -84,11 +47,11 @@ public class DLG_CARGOS extends javax.swing.JDialog {
         jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("VENTANA DE MANTENIMEINTO DE CARGOS.");
+        setTitle("Mantenimiento de MarcasRQ");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Cargo de Usuario:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "MarcaRQ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Descripción:");
@@ -161,10 +124,6 @@ public class DLG_CARGOS extends javax.swing.JDialog {
             }
         });
         jScrollPane1.setViewportView(TBcargo);
-        if (TBcargo.getColumnModel().getColumnCount() > 0) {
-            TBcargo.getColumnModel().getColumn(1).setResizable(false);
-            TBcargo.getColumnModel().getColumn(1).setPreferredWidth(250);
-        }
 
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -234,26 +193,6 @@ public class DLG_CARGOS extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BTnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTnActionPerformed
-        // TODO add your handling code here:
-        Grabar();
-    }//GEN-LAST:event_BTnActionPerformed
-
-    private void BTcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcActionPerformed
-        // TODO add your handling code here:
-        Cancelar();
-    }//GEN-LAST:event_BTcActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void TBcargoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBcargoMouseClicked
-        // TODO add your handling code here:
-        PasarDatos();
-    }//GEN-LAST:event_TBcargoMouseClicked
-
     private void TXcargoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXcargoKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == evt.VK_ENTER) {
@@ -261,16 +200,36 @@ public class DLG_CARGOS extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_TXcargoKeyPressed
 
-    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void BTcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcActionPerformed
         // TODO add your handling code here:
         Cancelar();
-        ctrl.VisualizarEnTabla("cargo", TBcargo, "where descripcion like('%" + jTextField2.getText().trim() + "%')");
-    }//GEN-LAST:event_jTextField2KeyReleased
+    }//GEN-LAST:event_BTcActionPerformed
 
     private void BTmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTmActionPerformed
         // TODO add your handling code here:
         Modificar();
     }//GEN-LAST:event_BTmActionPerformed
+
+    private void BTnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTnActionPerformed
+        // TODO add your handling code here:
+        Grabar();
+    }//GEN-LAST:event_BTnActionPerformed
+
+    private void TBcargoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBcargoMouseClicked
+        // TODO add your handling code here:
+        PasarDatos();
+    }//GEN-LAST:event_TBcargoMouseClicked
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        // TODO add your handling code here:
+        Cancelar();
+        ctrl.VisualizarEnTabla("cargo", TBcargo, "where descripcion like('%" + jTextField2.getText().trim() + "%')");
+    }//GEN-LAST:event_jTextField2KeyReleased
 
     /**
      * @param args the command line arguments
@@ -289,21 +248,20 @@ public class DLG_CARGOS extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DLG_CARGOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DLG_MarcaRQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DLG_CARGOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DLG_MarcaRQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DLG_CARGOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DLG_MarcaRQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DLG_CARGOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DLG_MarcaRQ.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DLG_CARGOS dialog = new DLG_CARGOS(new javax.swing.JFrame(), true);
+                DLG_MarcaRQ dialog = new DLG_MarcaRQ(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -315,6 +273,42 @@ public class DLG_CARGOS extends javax.swing.JDialog {
         });
     }
 
+    private void Grabar() {
+        if (TXcargo.getText().trim().length() == 0) {
+            ctrl.mensaje.MensajeAlerta("Ud. no ingresó el color");
+            TXcargo.requestFocus();
+        } else {
+            ctrl.GrabarData("marcarq", "descripcion", "'" + TXcargo.getText().trim().toUpperCase() + "'");
+            Cancelar();
+        }
+    }
+
+    private void Cancelar() {
+        ctrl.VisualizarEnTabla("marcarq", TBcargo, "");
+        TXcargo.setText("");
+        ActivaBotones(true, false);
+    }
+
+    private void ActivaBotones(boolean a, boolean b) {
+        BTn.setEnabled(a);
+        BTm.setEnabled(b);
+    }
+
+    private void Modificar() {
+        if (TXcargo.getText().trim().length() == 0) {
+            ctrl.mensaje.MensajeAlerta("Ud. no ingresó el marcarq");
+            TXcargo.requestFocus();
+        } else {
+            ctrl.ActualizarData("marcarq", "descripcion='" + TXcargo.getText().trim() + "'", "idmarcarq='" + TBcargo.getValueAt(TBcargo.getSelectedRow(), 0).toString().trim() + "'");
+            Cancelar();
+        }
+    }
+
+    private void PasarDatos() {
+        TXcargo.setText(TBcargo.getValueAt(TBcargo.getSelectedRow(), 1).toString().trim());
+        ActivaBotones(false, true);
+        ctrl.Maracar(TXcargo);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTc;
     private javax.swing.JButton BTm;

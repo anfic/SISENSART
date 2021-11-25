@@ -26,6 +26,8 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
         initComponents();
         ctrl.ComboAutoCompletivo(CBsolicitante, "nombres", "usuario", "and estado=1");
         CancelarDatosGeneralesRequerimiento();
+        ctrl.LlenarCombo(CBcolor, "select * from color", 2);
+        ctrl.LlenarCombo(CBmarca, "select * from marcarq", 2);
         
     }
     private void CancelarDatosGeneralesRequerimiento()
@@ -112,7 +114,11 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
             String cod_req=TXcodigo_requerimiento.getText().trim();
             Double cantidad=Double.parseDouble(TXcantidad.getText().trim());
             String obs=TXAobservacion.getText().trim();
-            ctrl.GrabarData("detalle_requerimiento", "id_material,id_requerimiento,cantidad,observacion", "'"+mat+"','"+cod_req+"','"+cantidad+"','"+obs+"'");
+            String mmtteett=TXeett.getText().trim();
+            String mar=ctrl.ObtenerCodigo("marcarq", "descripcion", CBmarca.getSelectedItem().toString().trim(), 1);
+            String color=ctrl.ObtenerCodigo("color", "descripcion", CBcolor.getSelectedItem().toString().trim(), 1);
+            String prior=CBpriori.getSelectedItem().toString().trim();
+            ctrl.GrabarData("detalle_requerimiento", "id_material,id_requerimiento,cantidad,observacion,mm_tt_eett,marcarq_idmarcarq,color_idcolor,prioridad", "'"+mat+"','"+cod_req+"','"+cantidad+"','"+obs+"','"+mmtteett+"','"+mar+"','"+color+"','"+prior+"'");
             CancelarDetalle();
         }
     }
@@ -122,6 +128,10 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
         CancelarDatosGeneralesRequerimiento();
         TXcantidad.setText("0.0");
         TXAobservacion.setText("");
+        TXeett.setText("");
+        CBmarca.setSelectedIndex(-1);
+        CBcolor.setSelectedIndex(-1);
+        CBpriori.setSelectedIndex(0);
         ctrl.VisualizarEnTabla("v_detalle_requerimiento", TBdetalle, "where detalle_requerimiento_id_requerimiento='"+TXcodigo_requerimiento.getText().trim()+"'");
         TXbuscar_material.requestFocus();
     }
@@ -189,9 +199,6 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
         TBmaterial = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         TXcantidad = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        TXAobservacion = new javax.swing.JTextArea();
         BTadicionar = new javax.swing.JButton();
         BTquitar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -202,6 +209,18 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
         TXcodigo_requerimiento = new javax.swing.JTextField();
         BTcancelar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        TXeett = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        CBmarca = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        CBcolor = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
+        CBpriori = new javax.swing.JComboBox<>();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        TXAobservacion = new javax.swing.JTextArea();
+        jButton5 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -361,6 +380,7 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 336, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 425, Short.MAX_VALUE)
                 .addComponent(jButton2))
         );
         jPanel2Layout.setVerticalGroup(
@@ -371,9 +391,7 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
                     .addComponent(TXbuscar_requerimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
                     .addComponent(jLabel9)))
         );
 
@@ -549,20 +567,6 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("Observación:");
-
-        TXAobservacion.setColumns(20);
-        TXAobservacion.setLineWrap(true);
-        TXAobservacion.setRows(5);
-        TXAobservacion.setWrapStyleWord(true);
-        TXAobservacion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TXAobservacionKeyPressed(evt);
-            }
-        });
-        jScrollPane3.setViewportView(TXAobservacion);
-
         BTadicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PQ_IMAGENES/ADICIONAR.png"))); // NOI18N
         BTadicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -582,11 +586,11 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "C. Mat.", "Material", "Requerimiento", "Cantidad", "Unidad", "Observacion"
+                "C. Mat.", "Material", "Requerimiento", "Cantidad", "Unidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -602,12 +606,11 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
             TBdetalle.getColumnModel().getColumn(2).setResizable(false);
             TBdetalle.getColumnModel().getColumn(3).setResizable(false);
             TBdetalle.getColumnModel().getColumn(4).setResizable(false);
-            TBdetalle.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PQ_IMAGENES/VER.png"))); // NOI18N
-        jButton6.setText("Vista de Impresión");
+        jButton6.setText("Vista Rápida");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -636,6 +639,7 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Código de Requerimiento:", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         TXcodigo_requerimiento.setEditable(false);
+        TXcodigo_requerimiento.setBackground(new java.awt.Color(255, 204, 0));
         TXcodigo_requerimiento.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         TXcodigo_requerimiento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -643,7 +647,7 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TXcodigo_requerimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(TXcodigo_requerimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -659,48 +663,118 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setText("MM/TT/EETT:");
+
+        TXeett.setBackground(new java.awt.Color(255, 255, 153));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setText("Marca:");
+
+        CBmarca.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CBmarcaFocusGained(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setText("Color:");
+
+        CBcolor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                CBcolorFocusGained(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setText("Prioridad:");
+
+        CBpriori.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        CBpriori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NECESARIO", "PRIORITARIO", "EMERGENCIA" }));
+
+        TXAobservacion.setColumns(20);
+        TXAobservacion.setRows(5);
+        TXAobservacion.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Observación:"));
+        jScrollPane6.setViewportView(TXAobservacion);
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PQ_IMAGENES/CARPETA1.png"))); // NOI18N
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PQ_IMAGENES/CARPETA1.png"))); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BTcancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BTenviar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(356, 356, 356)
+                .addComponent(BTadicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BTquitar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TXcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel7)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TXbuscar_material, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TXbuscar_material, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(BTadicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BTquitar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BTcancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BTenviar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CBpriori, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(CBmarca, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(CBcolor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(TXcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TXeett, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -710,34 +784,48 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
                             .addComponent(jButton3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(jLabel6)
-                            .addComponent(TXcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel7)
+                            .addComponent(TXcantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10)
+                            .addComponent(TXeett, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel11)
+                            .addComponent(CBmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addComponent(CBcolor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton5)
+                            .addComponent(jButton7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel13)
+                            .addComponent(CBpriori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 6, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BTadicionar)
-                    .addComponent(BTquitar)
                     .addComponent(jButton8)
                     .addComponent(BTcancelar)
                     .addComponent(jButton6)
-                    .addComponent(BTenviar)))
+                    .addComponent(BTenviar)
+                    .addComponent(BTquitar))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jTabbedPane1.addTab("Detalle de Requerimiento", jPanel5);
@@ -757,30 +845,6 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        DLG_MATERIALES mat=new DLG_MATERIALES(null, true);
-        mat.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void TXbuscar_materialKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXbuscar_materialKeyReleased
-        // TODO add your handling code here:
-        ctrl.VisualizarDataEscogidaEnTabla("material_id_material,material_descripcion,unidad_abreviatura,tipo_material_descripcion", "v_material", TBmaterial, "where material_descripcion like '%"+TXbuscar_material.getText().trim()+"%'");
-    }//GEN-LAST:event_TXbuscar_materialKeyReleased
-
-    private void TXbuscar_materialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXbuscar_materialKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode()==evt.VK_DOWN && TBmaterial.getRowCount()>0)
-        {
-            TBmaterial.requestFocus();
-        }
-    }//GEN-LAST:event_TXbuscar_materialKeyPressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -821,62 +885,41 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void TBmaterialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TBmaterialKeyPressed
+    private void TXbuscar_requerimientoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXbuscar_requerimientoKeyReleased
         // TODO add your handling code here:
-        if(evt.getKeyCode()==evt.VK_UP && TBmaterial.getSelectedRow()==0)
-        {
-            ctrl.Maracar(TXbuscar_material);
-        }
-        else if(evt.getKeyCode()==evt.VK_RIGHT)
-        {
-            ctrl.Maracar(TXcantidad);
-        }
-    }//GEN-LAST:event_TBmaterialKeyPressed
+        ctrl.VisualizarEnTabla("v_requerimiento", TBrequerimiento, "where (requerimiento_estado=1 or requerimiento_estado=2) and (usuario_nombres like '%"+TXbuscar_requerimiento.getText().trim()+"%')");
+    }//GEN-LAST:event_TXbuscar_requerimientoKeyReleased
 
-    private void TXcantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXcantidadKeyReleased
+    private void BTcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcancelarActionPerformed
         // TODO add your handling code here:
-        if(TXcantidad.getText().trim().length()==0)
-        {
-            TXcantidad.setText("0.0");
-            ctrl.Maracar(TXcantidad);
-        }
-    }//GEN-LAST:event_TXcantidadKeyReleased
+        TXcodigo_requerimiento.setText("");
+        CancelarDetalle();
+        jTabbedPane1.setSelectedIndex(0);
+        CancelarDatosGeneralesRequerimiento();
+    }//GEN-LAST:event_BTcancelarActionPerformed
 
-    private void TXcantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXcantidadKeyTyped
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        ctrl.SoloNumerosDecimales(evt);
-        ctrl.Unpunto(evt, TXcantidad);
-        NoEscribe(evt, TXcantidad);
-    }//GEN-LAST:event_TXcantidadKeyTyped
+        this.dispose();
+    }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void BTadicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTadicionarActionPerformed
+    private void BTenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTenviarActionPerformed
         // TODO add your handling code here:
-        int resp=JOptionPane.showConfirmDialog(null, "Desea adicionar este material.","Confirmar",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        int resp=JOptionPane.showConfirmDialog(null, "Desea enviar el requerimiento.","Confirmar",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
         if(resp==0)
         {
-            Adicionar();
+            Enviar();
         }
         else if(resp==1)
         {
             CancelarDatosGeneralesRequerimiento();
         }
-    }//GEN-LAST:event_BTadicionarActionPerformed
+    }//GEN-LAST:event_BTenviarActionPerformed
 
-    private void TXcantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXcantidadKeyPressed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==evt.VK_ENTER)
-        {
-            TXAobservacion.requestFocus();
-        }
-    }//GEN-LAST:event_TXcantidadKeyPressed
-
-    private void TXAobservacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXAobservacionKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode()==evt.VK_ENTER)
-        {
-            ctrl.PulsarEnter(evt, BTadicionar);
-        }
-    }//GEN-LAST:event_TXAobservacionKeyPressed
+        reporte.Reporte_1Parametro_Imagen("RPT_REQUERIMIENTOS.jasper", "p_codigo", TXcodigo_requerimiento.getText().trim(), "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void BTquitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTquitarActionPerformed
         // TODO add your handling code here:
@@ -897,36 +940,96 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_BTquitarActionPerformed
 
-    private void BTcancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTcancelarActionPerformed
+    private void BTadicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTadicionarActionPerformed
         // TODO add your handling code here:
-        TXcodigo_requerimiento.setText("");
-        CancelarDetalle();
-        jTabbedPane1.setSelectedIndex(0);
-        CancelarDatosGeneralesRequerimiento();
-    }//GEN-LAST:event_BTcancelarActionPerformed
-
-    private void TXbuscar_requerimientoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXbuscar_requerimientoKeyReleased
-        // TODO add your handling code here:
-        ctrl.VisualizarEnTabla("v_requerimiento", TBrequerimiento, "where (requerimiento_estado=1 or requerimiento_estado=2) and (usuario_nombres like '%"+TXbuscar_requerimiento.getText().trim()+"%')");
-    }//GEN-LAST:event_TXbuscar_requerimientoKeyReleased
-
-    private void BTenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTenviarActionPerformed
-        // TODO add your handling code here:
-        int resp=JOptionPane.showConfirmDialog(null, "Desea enviar el requerimiento.","Confirmar",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        int resp=JOptionPane.showConfirmDialog(null, "Desea adicionar este material.","Confirmar",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
         if(resp==0)
         {
-            Enviar();
+            Adicionar();
         }
         else if(resp==1)
         {
             CancelarDatosGeneralesRequerimiento();
         }
-    }//GEN-LAST:event_BTenviarActionPerformed
+    }//GEN-LAST:event_BTadicionarActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void TXcantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXcantidadKeyTyped
         // TODO add your handling code here:
-        reporte.Reporte_1Parametro_Imagen("RPT_REQUERIMIENTOS.jasper", "p_codigo", TXcodigo_requerimiento.getText().trim(), "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
-    }//GEN-LAST:event_jButton6ActionPerformed
+        ctrl.SoloNumerosDecimales(evt);
+        ctrl.Unpunto(evt, TXcantidad);
+        NoEscribe(evt, TXcantidad);
+    }//GEN-LAST:event_TXcantidadKeyTyped
+
+    private void TXcantidadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXcantidadKeyReleased
+        // TODO add your handling code here:
+        if(TXcantidad.getText().trim().length()==0)
+        {
+            TXcantidad.setText("0.0");
+            ctrl.Maracar(TXcantidad);
+        }
+    }//GEN-LAST:event_TXcantidadKeyReleased
+
+    private void TXcantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXcantidadKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==evt.VK_ENTER)
+        {
+            TXAobservacion.requestFocus();
+        }
+    }//GEN-LAST:event_TXcantidadKeyPressed
+
+    private void TBmaterialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TBmaterialKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==evt.VK_UP && TBmaterial.getSelectedRow()==0)
+        {
+            ctrl.Maracar(TXbuscar_material);
+        }
+        else if(evt.getKeyCode()==evt.VK_RIGHT)
+        {
+            ctrl.Maracar(TXcantidad);
+        }
+    }//GEN-LAST:event_TBmaterialKeyPressed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        DLG_MATERIALES mat=new DLG_MATERIALES(null, true);
+        mat.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void TXbuscar_materialKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXbuscar_materialKeyReleased
+        // TODO add your handling code here:
+        ctrl.VisualizarDataEscogidaEnTabla("material_id_material,material_descripcion,unidad_abreviatura,tipo_material_descripcion", "v_material", TBmaterial, "where material_descripcion like '%"+TXbuscar_material.getText().trim()+"%'");
+    }//GEN-LAST:event_TXbuscar_materialKeyReleased
+
+    private void TXbuscar_materialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXbuscar_materialKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==evt.VK_DOWN && TBmaterial.getRowCount()>0)
+        {
+            TBmaterial.requestFocus();
+        }
+    }//GEN-LAST:event_TXbuscar_materialKeyPressed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        DLG_MarcaRQ dlg=new DLG_MarcaRQ(null,true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        DLG_ColorRQ dlg=new DLG_ColorRQ(null,true);
+        dlg.setVisible(true);
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void CBcolorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CBcolorFocusGained
+        // TODO add your handling code here:
+        ctrl.LlenarCombo(CBcolor, "select * from color", 2);
+    }//GEN-LAST:event_CBcolorFocusGained
+
+    private void CBmarcaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CBmarcaFocusGained
+        // TODO add your handling code here:
+        ctrl.LlenarCombo(CBmarca, "select * from marcarq", 2);
+    }//GEN-LAST:event_CBmarcaFocusGained
 
     private void txtArriboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtArriboActionPerformed
         // TODO add your handling code here:
@@ -942,6 +1045,9 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
     private javax.swing.JButton BTcancelar;
     private javax.swing.JButton BTenviar;
     private javax.swing.JButton BTquitar;
+    private javax.swing.JComboBox<String> CBcolor;
+    private javax.swing.JComboBox<String> CBmarca;
+    private javax.swing.JComboBox<String> CBpriori;
     private javax.swing.JComboBox CBprioridad;
     private javax.swing.JComboBox CBsolicitante;
     private javax.swing.JTable TBdetalle;
@@ -955,20 +1061,26 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TXcantidad;
     private javax.swing.JTextField TXcodigo_requerimiento;
     private javax.swing.JCheckBox checkCronograma;
+    private javax.swing.JTextField TXeett;
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -980,9 +1092,9 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblArribo;
     private javax.swing.JTextField txtArribo;
