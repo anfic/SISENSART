@@ -37,7 +37,7 @@ public class Conexion_BD
 //            host="192.168.1.200";
 //            db="bd_sisensart_v3";
 //            usu="root";
-            contrasena="";
+            contrasena="123456";
             host="localhost";
             db="bd_sisensart_v5";
             URL="jdbc:mysql://"+host+"/"+db;

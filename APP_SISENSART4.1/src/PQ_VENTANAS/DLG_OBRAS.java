@@ -21,6 +21,7 @@ public class DLG_OBRAS extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         ctrl.CerrarVentanaESC(this);
+        ctrl.LlenarCombo(cmbSede,"select * from sede ",2);
     }
     private void Guardar()
     {
@@ -36,14 +37,22 @@ public class DLG_OBRAS extends javax.swing.JDialog {
         }
         else
         {
-            ctrl.GrabarData("OBRA","descripcion,direccion,estado", "'"+TXAdescripcion.getText().trim()+"','"+TXdireccion.getText().trim()+"',1");
+            String sede = cmbSede.getSelectedItem().toString();
+            if(txtcontrato.getText().isEmpty() || txtcontrato.getText().trim().length() == 0){
+                ctrl.mensaje.MensajeError("Ud. no ingresó el nro de contrato");
+                txtcontrato.requestFocus();
+            }else{
+                ctrl.GrabarData("OBRA","descripcion,direccion,estado,sede_idsede,nro_servicio_contrato", "'"+TXAdescripcion.getText().trim()+"','"+TXdireccion.getText().trim()+"',1,'"+ctrl.RetornarConsulta("select idsede from sede where descripcion ='"+sede+"'",1)+"','"+txtcontrato.getText()+"'");
             Cancelar();
+            }
         }
     }
     private void Cancelar()
     {
         TXAdescripcion.setText("");
         TXdireccion.setText("");
+        ctrl.LlenarCombo(cmbSede,"select * from sede ",2);
+        txtcontrato.setText("");
         TXAdescripcion.requestFocus();
     }
 
@@ -66,6 +75,11 @@ public class DLG_OBRAS extends javax.swing.JDialog {
         BTcancelar = new javax.swing.JButton();
         BTeditar = new javax.swing.JButton();
         BTsalir = new javax.swing.JButton();
+        cmbSede = new javax.swing.JComboBox<>();
+        txtSede = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtcontrato = new javax.swing.JTextField();
+        btnSede = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("MANTENIMIENTO DE OBRAS.");
@@ -128,6 +142,37 @@ public class DLG_OBRAS extends javax.swing.JDialog {
             }
         });
 
+        cmbSede.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cmbSedeFocusGained(evt);
+            }
+        });
+        cmbSede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbSedeActionPerformed(evt);
+            }
+        });
+
+        txtSede.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        txtSede.setText("Sede:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Nro. Servicio de Contrato");
+
+        txtcontrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcontratoActionPerformed(evt);
+            }
+        });
+
+        btnSede.setBackground(new java.awt.Color(255, 255, 255));
+        btnSede.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PQ_IMAGENES/CARPETA1.png"))); // NOI18N
+        btnSede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSedeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -135,6 +180,7 @@ public class DLG_OBRAS extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtcontrato)
                     .addComponent(jScrollPane1)
                     .addComponent(TXdireccion)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -148,8 +194,14 @@ public class DLG_OBRAS extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BTeditar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BTsalir)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(BTsalir))
+                            .addComponent(txtSede)
+                            .addComponent(jLabel3))
+                        .addGap(0, 8, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cmbSede, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSede)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -161,15 +213,25 @@ public class DLG_OBRAS extends javax.swing.JDialog {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TXdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(TXdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtSede)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbSede, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSede, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtcontrato, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTguardar)
                     .addComponent(BTcancelar)
                     .addComponent(BTeditar)
                     .addComponent(BTsalir))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,7 +242,9 @@ public class DLG_OBRAS extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -217,6 +281,25 @@ public class DLG_OBRAS extends javax.swing.JDialog {
             ctrl.PulsarEnter(evt, BTguardar);
         }
     }//GEN-LAST:event_TXdireccionKeyPressed
+
+    private void txtcontratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontratoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcontratoActionPerformed
+
+    private void btnSedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSedeActionPerformed
+        // TODO add your handling code here:
+        DLG_Mantenimiento_Sede sede = new DLG_Mantenimiento_Sede(null,true);
+        sede.setVisible(true);
+    }//GEN-LAST:event_btnSedeActionPerformed
+
+    private void cmbSedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSedeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbSedeActionPerformed
+
+    private void cmbSedeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbSedeFocusGained
+        // TODO add your handling code here:
+        ctrl.LlenarCombo(cmbSede,"select * from sede ",2);
+    }//GEN-LAST:event_cmbSedeFocusGained
 
     /**
      * @param args the command line arguments
@@ -267,9 +350,14 @@ public class DLG_OBRAS extends javax.swing.JDialog {
     private javax.swing.JButton BTsalir;
     private javax.swing.JTextArea TXAdescripcion;
     private javax.swing.JTextField TXdireccion;
+    private javax.swing.JButton btnSede;
+    private javax.swing.JComboBox<String> cmbSede;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel txtSede;
+    private javax.swing.JTextField txtcontrato;
     // End of variables declaration//GEN-END:variables
 }
