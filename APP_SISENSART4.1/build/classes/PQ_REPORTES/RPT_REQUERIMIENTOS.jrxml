@@ -548,7 +548,9 @@ ESPECIFICACIONES TÉCNICAS]]></text>
 			</rectangle>
 			<textField>
 				<reportElement x="70" y="46" width="144" height="22" uuid="5f9b4e1a-1d55-423c-9ea9-ab720d39c67b"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{requerimiento_fecha}]]></textFieldExpression>
 			</textField>
 			<rectangle>
@@ -576,7 +578,9 @@ ESPECIFICACIONES TÉCNICAS]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="70" y="3" width="142" height="21" uuid="1086b2e8-af17-427f-8432-eb7d90fa20f1"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{usuario_nombres}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -591,7 +595,9 @@ ESPECIFICACIONES TÉCNICAS]]></text>
 			</textField>
 			<textField>
 				<reportElement x="70" y="24" width="144" height="22" uuid="2bc94750-04d2-49e1-a0bc-810205917dac"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{cargo_descripcion}]]></textFieldExpression>
 			</textField>
 			<staticText>
