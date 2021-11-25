@@ -27,7 +27,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jScrollPane5" alignment="0" pref="1001" max="32767" attributes="0"/>
+          <Component id="jScrollPane5" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -706,7 +706,7 @@
                               </StringArray>
                             </Property>
                             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                              <Color id="Default Cursor"/>
+                              <Color id="Cursor Por defecto"/>
                             </Property>
                           </Properties>
                           <Events>
@@ -989,6 +989,8 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
                                                   <Component id="jButton8" min="-2" pref="34" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="cmbsinIGV" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
@@ -1023,6 +1025,7 @@
                                       <Component id="jLabel18" alignment="2" min="-2" max="-2" attributes="0"/>
                                       <Component id="CBunidad" alignment="2" min="-2" max="-2" attributes="0"/>
                                       <Component id="jButton8" alignment="2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cmbsinIGV" alignment="2" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="2" attributes="0">
@@ -1191,6 +1194,14 @@
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                           </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JCheckBox" name="cmbsinIGV">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Precio sin IGV"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbsinIGVActionPerformed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>

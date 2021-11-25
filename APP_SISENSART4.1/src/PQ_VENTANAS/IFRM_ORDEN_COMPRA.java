@@ -229,6 +229,7 @@ public class IFRM_ORDEN_COMPRA extends javax.swing.JInternalFrame {
         jButton8 = new javax.swing.JButton();
         BTadicionar = new javax.swing.JButton();
         CH_por_requerimiento = new javax.swing.JCheckBox();
+        cmbsinIGV = new javax.swing.JCheckBox();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         TBdetalle_orden = new javax.swing.JTable();
@@ -873,6 +874,13 @@ public class IFRM_ORDEN_COMPRA extends javax.swing.JInternalFrame {
             }
         });
 
+        cmbsinIGV.setText("Precio sin IGV");
+        cmbsinIGV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbsinIGVActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -903,6 +911,8 @@ public class IFRM_ORDEN_COMPRA extends javax.swing.JInternalFrame {
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbsinIGV)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel7Layout.createSequentialGroup()
                                 .addComponent(TXunitario, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -928,7 +938,8 @@ public class IFRM_ORDEN_COMPRA extends javax.swing.JInternalFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel18)
                     .addComponent(CBunidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton8))
+                    .addComponent(jButton8)
+                    .addComponent(cmbsinIGV))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(TXtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1163,7 +1174,7 @@ public class IFRM_ORDEN_COMPRA extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1001, Short.MAX_VALUE)
+            .addComponent(jScrollPane5)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1457,6 +1468,10 @@ public class IFRM_ORDEN_COMPRA extends javax.swing.JInternalFrame {
         ctrl.LlenarCombo(CBserie, "select * from serie_orden", 2);
     }//GEN-LAST:event_CBserieFocusGained
 
+    private void cmbsinIGVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbsinIGVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbsinIGVActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTadicionar;
@@ -1499,6 +1514,7 @@ public class IFRM_ORDEN_COMPRA extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TXtotal;
     private javax.swing.JTextField TXtransporte;
     private javax.swing.JTextField TXunitario;
+    private javax.swing.JCheckBox cmbsinIGV;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -1657,6 +1673,10 @@ public class IFRM_ORDEN_COMPRA extends javax.swing.JInternalFrame {
             a = Double.parseDouble(TXcantidad.getText().trim());
             b = Double.parseDouble(TXunitario.getText().trim());
             c = a * b;
+            int igv = Integer.parseInt(CBigv.getSelectedItem().toString());
+            if(cmbsinIGV.isSelected()){
+            c = (a*b*100)/(igv);
+            }
             TXtotal.setText("" + ctrl.Redondear(c, 2));
         } catch (NumberFormatException e) {
             ctrl.mensaje.MensajeAlerta("Números incoherentes.");

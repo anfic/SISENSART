@@ -99,6 +99,7 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         jMenu10 = new javax.swing.JMenu();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
+        jMenuItem30 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -488,6 +489,15 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
 
         jMenu3.add(jMenu10);
 
+        jMenuItem30.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuItem30.setText("Sede");
+        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem30ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem30);
+
         menuBar.add(jMenu3);
 
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PQ_IMAGENES/VER.png"))); // NOI18N
@@ -875,6 +885,12 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem27ActionPerformed
 
+    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+        // TODO add your handling code here:
+        DLG_Mantenimiento_Sede dlg=new DLG_Mantenimiento_Sede(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_jMenuItem30ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -959,6 +975,7 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem30;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
