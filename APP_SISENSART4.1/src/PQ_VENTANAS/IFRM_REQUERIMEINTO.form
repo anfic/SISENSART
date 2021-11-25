@@ -272,11 +272,7 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                          <EmptySpace pref="336" max="32767" attributes="0"/>
-=======
                           <EmptySpace pref="425" max="32767" attributes="0"/>
->>>>>>> f96ef3677f8d0efa59f1d0e137d5bd85c5167f50
                           <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -289,11 +285,7 @@
                               <Component id="TXbuscar_requerimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-<<<<<<< HEAD
-                          <Component id="jScrollPane1" pref="254" max="32767" attributes="0"/>
-=======
                           <Component id="jScrollPane1" pref="172" max="32767" attributes="0"/>
->>>>>>> f96ef3677f8d0efa59f1d0e137d5bd85c5167f50
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -648,15 +640,9 @@
                                       <Component id="TXbuscar_material" alignment="2" min="-2" max="-2" attributes="0"/>
                                       <Component id="jButton3" alignment="2" min="-2" max="-2" attributes="0"/>
                                   </Group>
-<<<<<<< HEAD
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" pref="289" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" max="-2" attributes="0"/>
-=======
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jScrollPane2" min="-2" pref="111" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
->>>>>>> f96ef3677f8d0efa59f1d0e137d5bd85c5167f50
                                   <Group type="103" groupAlignment="2" attributes="0">
                                       <Component id="jLabel6" alignment="2" min="-2" max="-2" attributes="0"/>
                                       <Component id="TXcantidad" alignment="2" min="-2" max="-2" attributes="0"/>
