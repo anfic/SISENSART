@@ -3,7 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Andy%20Figueroa%20Castillo/Proyectos/32%20-%20QualitySystems/SISENSART_GIT/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/IFRM_REQUERIMEINTO.java</file>
+=======
+            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/DLG_OBRAS.java</file>
+            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/MDI_PRINCIPAL.java</file>
+            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/IFRM_REQUERIMEINTO.java</file>
+            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_CONTROLADORES/Conexion_BD.java</file>
+            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/IFRM_ORDEN_COMPRA.java</file>
+            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_CONTROLADORES/CLS_Controlador.java</file>
+>>>>>>> c8716666559de02a6375e3de409f55a3868beb2c
         </group>
     </open-files>
 </project-private>
