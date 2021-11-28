@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Requerimiento de Materiales." pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cac6aa01-f376-4771-b45e-19f54c023e80">
 	<property name="ireport.zoom" value="2.000000000000021"/>
-	<property name="ireport.x" value="179"/>
-	<property name="ireport.y" value="259"/>
+	<property name="ireport.x" value="553"/>
+	<property name="ireport.y" value="376"/>
 	<parameter name="p_codigo" class="java.lang.String"/>
 	<parameter name="p_logo" class="java.io.InputStream"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["D:\\Andy Figueroa Castillo\\Proyectos\\32 - QualitySystems\\SISENSART_GIT\\SISENSART\\APP_SISENSART4.1\\src\\PQ_REPORTES\\"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["src\\PQ_REPORTES\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
@@ -31,7 +31,8 @@
      marcarq.`descripcion` AS marcarq_descripcion,
      color.`descripcion` AS color_descripcion,
      detalle_requerimiento.`prioridad` AS detalle_requerimiento_prioridad,
-     tipo_material.`descripcion` AS tipo_material_descripcion
+     tipo_material.`descripcion` AS tipo_material_descripcion,
+     material.`foto` AS material_foto
 FROM
      `usuario` usuario INNER JOIN `requerimiento` requerimiento ON usuario.`id_usuario` = requerimiento.`id_usuario`
      INNER JOIN `cargo` cargo ON usuario.`id_cargo` = cargo.`id_cargo`
@@ -58,7 +59,7 @@ WHERE
 	<field name="unidad_abreviatura" class="java.lang.String"/>
 	<field name="detalle_requerimiento_cantidad" class="java.math.BigDecimal"/>
 	<field name="detalle_requerimiento_observacion" class="java.lang.String"/>
-	<field name="usuario_firma" class="java.io.InputStream"/>
+	<field name="usuario_firma" class="java.lang.Object"/>
 	<field name="sede_descripcion" class="java.lang.String"/>
 	<field name="obra_nro_servicio_contrato" class="java.lang.String"/>
 	<field name="requerimiento_cronograma_envio" class="java.lang.String"/>
@@ -68,6 +69,7 @@ WHERE
 	<field name="color_descripcion" class="java.lang.String"/>
 	<field name="detalle_requerimiento_prioridad" class="java.lang.String"/>
 	<field name="tipo_material_descripcion" class="java.lang.String"/>
+	<field name="material_foto" class="java.io.InputStream"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -94,12 +96,19 @@ WHERE
 				<text><![CDATA[REQUERIMIENTO DE INSUMOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="588" y="0" width="214" height="90" uuid="4668c657-effb-4928-9529-18c3c3776e62"/>
+				<reportElement x="588" y="0" width="214" height="73" uuid="4668c657-effb-4928-9529-18c3c3776e62"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FOR-LOG-01-DMD-VERSIÓN 02]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="603" y="71" width="192" height="20" forecolor="#FF3333" uuid="799f9e3c-56db-42ef-83e3-87eb9b7beafd"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{requerimiento_estado}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -446,6 +455,10 @@ ESPECIFICACIONES TÉCNICAS]]></text>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{detalle_requerimiento_observacion}]]></textFieldExpression>
 			</textField>
+			<image hAlign="Center">
+				<reportElement x="600" y="0" width="86" height="33" uuid="3b926027-821e-4c79-9c64-499cc56a4971"/>
+				<imageExpression><![CDATA[$F{material_foto}]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 	<pageFooter>
@@ -548,7 +561,9 @@ ESPECIFICACIONES TÉCNICAS]]></text>
 			</rectangle>
 			<textField>
 				<reportElement x="70" y="46" width="144" height="22" uuid="5f9b4e1a-1d55-423c-9ea9-ab720d39c67b"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{requerimiento_fecha}]]></textFieldExpression>
 			</textField>
 			<rectangle>
@@ -576,7 +591,9 @@ ESPECIFICACIONES TÉCNICAS]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="70" y="3" width="142" height="21" uuid="1086b2e8-af17-427f-8432-eb7d90fa20f1"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{usuario_nombres}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -591,7 +608,9 @@ ESPECIFICACIONES TÉCNICAS]]></text>
 			</textField>
 			<textField>
 				<reportElement x="70" y="24" width="144" height="22" uuid="2bc94750-04d2-49e1-a0bc-810205917dac"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{cargo_descripcion}]]></textFieldExpression>
 			</textField>
 			<staticText>
