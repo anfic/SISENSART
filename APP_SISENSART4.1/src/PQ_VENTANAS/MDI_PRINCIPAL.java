@@ -95,10 +95,10 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu11 = new javax.swing.JMenu();
-        jMenuItem30 = new javax.swing.JMenuItem();
-        jMenuItem31 = new javax.swing.JMenuItem();
-        jMenuItem32 = new javax.swing.JMenuItem();
+        MENUGENERALPROVEEDOR = new javax.swing.JMenu();
+        MenuProveedor = new javax.swing.JMenuItem();
+        Menubanco = new javax.swing.JMenuItem();
+        MenuInformeProveedor = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
@@ -459,37 +459,37 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
 
         jMenu3.add(jMenu4);
 
-        jMenu11.setText("Proveedores");
-        jMenu11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MENUGENERALPROVEEDOR.setText("Proveedores");
+        MENUGENERALPROVEEDOR.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
-        jMenuItem30.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenuItem30.setText("Proveedor");
-        jMenuItem30.addActionListener(new java.awt.event.ActionListener() {
+        MenuProveedor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MenuProveedor.setText("Proveedor");
+        MenuProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem30ActionPerformed(evt);
+                MenuProveedorActionPerformed(evt);
             }
         });
-        jMenu11.add(jMenuItem30);
+        MENUGENERALPROVEEDOR.add(MenuProveedor);
 
-        jMenuItem31.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenuItem31.setText("Banco");
-        jMenuItem31.addActionListener(new java.awt.event.ActionListener() {
+        Menubanco.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Menubanco.setText("Banco");
+        Menubanco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem31ActionPerformed(evt);
+                MenubancoActionPerformed(evt);
             }
         });
-        jMenu11.add(jMenuItem31);
+        MENUGENERALPROVEEDOR.add(Menubanco);
 
-        jMenuItem32.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenuItem32.setText("Informe Proveedor");
-        jMenuItem32.addActionListener(new java.awt.event.ActionListener() {
+        MenuInformeProveedor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MenuInformeProveedor.setText("Informe Proveedor");
+        MenuInformeProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem32ActionPerformed(evt);
+                MenuInformeProveedorActionPerformed(evt);
             }
         });
-        jMenu11.add(jMenuItem32);
+        MENUGENERALPROVEEDOR.add(MenuInformeProveedor);
 
-        jMenu3.add(jMenu11);
+        jMenu3.add(MENUGENERALPROVEEDOR);
 
         jMenu10.setText("Almacenes");
         jMenu10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -895,23 +895,23 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem27ActionPerformed
 
-    private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
+    private void MenuProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuProveedorActionPerformed
         // TODO add your handling code here:
         DLG_PROVEEDOR dlg=new DLG_PROVEEDOR(this, true);
         dlg.setVisible(true); 
-    }//GEN-LAST:event_jMenuItem30ActionPerformed
+    }//GEN-LAST:event_MenuProveedorActionPerformed
 
-    private void jMenuItem31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem31ActionPerformed
+    private void MenubancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenubancoActionPerformed
         // TODO add your handling code here:
         DLG_Banco dlg=new DLG_Banco(this, true);
         dlg.setVisible(true);
-    }//GEN-LAST:event_jMenuItem31ActionPerformed
+    }//GEN-LAST:event_MenubancoActionPerformed
 
-    private void jMenuItem32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem32ActionPerformed
+    private void MenuInformeProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuInformeProveedorActionPerformed
         // TODO add your handling code here:
         DLG_Informe_Reporte dlg=new DLG_Informe_Reporte(this, true);
         dlg.setVisible(true);
-    }//GEN-LAST:event_jMenuItem32ActionPerformed
+    }//GEN-LAST:event_MenuInformeProveedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -949,6 +949,10 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu MENUGENERALPROVEEDOR;
+    private javax.swing.JMenuItem MenuInformeProveedor;
+    private javax.swing.JMenuItem MenuProveedor;
+    private javax.swing.JMenuItem Menubanco;
     public static javax.swing.JTextField TXcargo;
     public static javax.swing.JTextField TXnick;
     public static javax.swing.JTextField TXusuario;
@@ -966,7 +970,6 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu10;
-    private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -997,9 +1000,6 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem30;
-    private javax.swing.JMenuItem jMenuItem31;
-    private javax.swing.JMenuItem jMenuItem32;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
