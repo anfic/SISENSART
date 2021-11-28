@@ -37,9 +37,9 @@ public class Conexion_BD
 //            host="192.168.1.200";
 //            db="bd_sisensart_v3";
 //            usu="root";
-            contrasena="";
+            contrasena="71536075";
             host="localhost";
-            db="bd_sisensart_v4";
+            db="bd_sisensart_v5";
             URL="jdbc:mysql://"+host+"/"+db;
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conec=DriverManager.getConnection(URL, usu, contrasena);
