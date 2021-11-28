@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Requerimiento de Materiales." pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cac6aa01-f376-4771-b45e-19f54c023e80">
 	<property name="ireport.zoom" value="2.000000000000021"/>
-	<property name="ireport.x" value="179"/>
-	<property name="ireport.y" value="259"/>
+	<property name="ireport.x" value="502"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="p_codigo" class="java.lang.String"/>
 	<parameter name="p_logo" class="java.io.InputStream"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["D:\\Andy Figueroa Castillo\\Proyectos\\32 - QualitySystems\\SISENSART_GIT\\SISENSART\\APP_SISENSART4.1\\src\\PQ_REPORTES\\"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["src\\PQ_REPORTES\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
@@ -94,12 +94,19 @@ WHERE
 				<text><![CDATA[REQUERIMIENTO DE INSUMOS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="588" y="0" width="214" height="90" uuid="4668c657-effb-4928-9529-18c3c3776e62"/>
+				<reportElement x="588" y="0" width="214" height="73" uuid="4668c657-effb-4928-9529-18c3c3776e62"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FOR-LOG-01-DMD-VERSIÓN 02]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="603" y="71" width="192" height="20" forecolor="#FF3333" uuid="799f9e3c-56db-42ef-83e3-87eb9b7beafd"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{requerimiento_estado}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
