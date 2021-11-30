@@ -156,7 +156,7 @@ public class DLG_Anulaciones_Orden extends javax.swing.JDialog {
             int resp = ctrl.mensaje.MsjeConfirmacion("Esta seguro de anular esta orden\n" + ctrl.ValorTabla(TBorden, 0));
             if (resp == 0) {
                 ctrl.ActualizarData("orden_compra", "estado=4", "id_orden='" + ctrl.ValorTabla(TBorden, 0) + "'");
-                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_FACTURA_ANULADA.jasper", "p_codigo", ctrl.ValorTabla(TBorden, 0), "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_FACTURA_ANULADA.jasper", "p_codigo", ctrl.ValorTabla(TBorden, 0), "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
                 Visualizar();
             } else {
                 ctrl.mensaje.MensajeSimple("Proceso cancelado");

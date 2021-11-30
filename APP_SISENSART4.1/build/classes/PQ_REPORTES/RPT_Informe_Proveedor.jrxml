@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RPT_Informe_Proveedor" pageWidth="490" pageHeight="842" columnWidth="450" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b6db88bf-435d-4a8e-a17f-1a5ffd97f2bc">
+	<property name="ireport.zoom" value="1.0000000000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_logo" class="java.io.InputStream"/>
+	<parameter name="p_proveedor" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\pc\\Desktop\\2021-II\\PROYECTO ALMACEN\\Enviar Carlos\\APLICACIONES\\SISENSART\\APP_SISENSART4.1\\src\\PQ_REPORTES\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     proveedor.`id_proveedor` AS proveedor_id_proveedor,
+     proveedor.`razon` AS proveedor_razon,
+     proveedor.`representante` AS proveedor_representante,
+     proveedor.`ruc` AS proveedor_ruc,
+     proveedor.`direccion` AS proveedor_direccion,
+     proveedor.`ciudad` AS proveedor_ciudad,
+     proveedor.`telefono` AS proveedor_telefono,
+     proveedor.`correo` AS proveedor_correo,
+     cuentas_proveedor.`cta_soles` AS cuentas_proveedor_cta_soles,
+     cuentas_proveedor.`cta_dolares` AS cuentas_proveedor_cta_dolares,
+     cuentas_proveedor.`cci_soles` AS cuentas_proveedor_cci_soles,
+     cuentas_proveedor.`cci_dolares` AS cuentas_proveedor_cci_dolares,
+     banco.`idbanco` AS banco_idbanco,
+     banco.`descripcion` AS banco_descripcion,
+     banco.`abeviatura` AS banco_abeviatura,
+     contacto.`idcontacto` AS contacto_idcontacto,
+     contacto.`nombres` AS contacto_nombres,
+     contacto.`nro_cel` AS contacto_nro_cel,
+     contacto.`correo` AS contacto_correo,
+     configuracion_empresa.`razon_social` AS empresa_razon_social,
+     configuracion_empresa.`ruc` AS empresa_ruc,
+     configuracion_empresa.`direccion` AS empresa_direccion,
+     configuracion_empresa.`telefono` AS empresa_telefono,
+     configuracion_empresa.`representante_legal` AS empresa_representante_legal
+FROM
+     `proveedor` proveedor INNER JOIN `cuentas_proveedor` cuentas_proveedor ON proveedor.`id_proveedor` = cuentas_proveedor.`proveedor_id_proveedor`
+     INNER JOIN `banco` banco ON cuentas_proveedor.`banco_idbanco` = banco.`idbanco`
+     INNER JOIN `contacto` contacto ON proveedor.`id_proveedor` = contacto.`id_proveedor`,
+     `configuracion_empresa` configuracion_empresa
+WHERE
+     proveedor.`id_proveedor` = $P{p_proveedor}
+GROUP BY contacto.`nro_cel` and contacto.`nombres` and cuentas_proveedor.`cta_soles`]]>
+	</queryString>
+	<field name="proveedor_id_proveedor" class="java.lang.Integer"/>
+	<field name="proveedor_razon" class="java.lang.String"/>
+	<field name="proveedor_representante" class="java.lang.String"/>
+	<field name="proveedor_ruc" class="java.lang.String"/>
+	<field name="proveedor_direccion" class="java.lang.String"/>
+	<field name="proveedor_ciudad" class="java.lang.String"/>
+	<field name="proveedor_telefono" class="java.lang.String"/>
+	<field name="proveedor_correo" class="java.lang.String"/>
+	<field name="cuentas_proveedor_cta_soles" class="java.lang.String"/>
+	<field name="cuentas_proveedor_cta_dolares" class="java.lang.String"/>
+	<field name="cuentas_proveedor_cci_soles" class="java.lang.String"/>
+	<field name="cuentas_proveedor_cci_dolares" class="java.lang.String"/>
+	<field name="banco_idbanco" class="java.lang.Integer"/>
+	<field name="banco_descripcion" class="java.lang.String"/>
+	<field name="banco_abeviatura" class="java.lang.String"/>
+	<field name="contacto_idcontacto" class="java.lang.Integer"/>
+	<field name="contacto_nombres" class="java.lang.String"/>
+	<field name="contacto_nro_cel" class="java.lang.String"/>
+	<field name="contacto_correo" class="java.lang.String"/>
+	<field name="empresa_razon_social" class="java.lang.String"/>
+	<field name="empresa_ruc" class="java.lang.String"/>
+	<field name="empresa_direccion" class="java.lang.String"/>
+	<field name="empresa_telefono" class="java.lang.String"/>
+	<field name="empresa_representante_legal" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="228" y="92" width="222" height="11" uuid="9b5a608b-ac6c-4497-a353-8e71a4e09b38"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="122" y="72" width="328" height="20" uuid="e0907a3c-3de6-428d-9b89-363c07aa928a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORME DE PROVEEDOR]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="122" height="92" uuid="c464d440-deff-4378-82d3-f7b83b08e042"/>
+				<imageExpression><![CDATA[$P{p_logo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="122" y="0" width="328" height="20" uuid="cbd338c7-dbd9-4ca5-8b6a-f13ab81619f0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_razon_social}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="20" width="328" height="13" uuid="d913dd12-3fda-49ec-9f9e-da30d9820073"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["RUC: "+ $F{empresa_ruc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="33" width="328" height="13" uuid="3a26a2c2-d5f2-4912-8205-f8d71b48e5cc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Dirección: "+ $F{empresa_direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="46" width="328" height="13" uuid="c51365eb-ae44-44f6-8e69-fad3473e821d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Teléfono: "+ $F{empresa_telefono}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="59" width="328" height="13" uuid="d6e3a990-ced4-4ed1-ab44-4bf0f64f5013"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Representante: "+ $F{empresa_representante_legal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="66" height="20" uuid="8aa1473d-4832-41bc-901b-c78da9fc0339"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="66" height="20" uuid="47fca1d1-2f13-4085-9417-651e34a54848"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RAZÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="66" height="20" uuid="f7f1fa68-b452-4550-9361-4368ae7cf72e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RUC:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="66" height="20" uuid="b21bd8b2-3c8b-4a3b-a8ab-34b58661e3c2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="66" y="0" width="100" height="20" uuid="77ec79ee-2e9a-493e-8dcb-06d61294c84b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{proveedor_id_proveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="66" y="20" width="344" height="20" uuid="d5857467-5b05-485d-9e90-7d1e64608d86"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{proveedor_razon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="66" y="40" width="344" height="20" uuid="cb7aaac5-5880-404a-8a64-0b8dda95ea4b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{proveedor_ruc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="66" y="60" width="344" height="20" uuid="ebfcb10c-d982-4da9-8a85-8ba6887866a9"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{proveedor_direccion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="91">
+			<subreport>
+				<reportElement x="0" y="0" width="269" height="90" uuid="7f2e515b-55a3-414f-8e8e-25f78147512e"/>
+				<subreportParameter name="p_proveedor">
+					<subreportParameterExpression><![CDATA[$P{p_proveedor}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "RPT_Informe_Proveedor_subreport_contacto.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="100">
+			<subreport>
+				<reportElement x="0" y="0" width="269" height="100" uuid="126568dd-00db-43a8-89f9-35d088b59cc8"/>
+				<subreportParameter name="p_proveedor">
+					<subreportParameterExpression><![CDATA[$P{p_proveedor}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "RPT_Informe_Proveedor_subreport_Cuentas.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="166" y="0" width="80" height="20" uuid="9e50231f-1bd2-48ab-b6e8-8ac00d4d6159"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="246" y="0" width="40" height="20" uuid="a05f585c-2cb3-41c1-8878-221eb5355ea8"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

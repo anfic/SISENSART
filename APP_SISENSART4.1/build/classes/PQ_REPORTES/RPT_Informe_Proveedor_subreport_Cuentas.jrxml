@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RPT_Informe_Proveedor_subreport_Cuentas" pageWidth="450" pageHeight="802" columnWidth="450" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0889bc83-6e80-472b-b8ec-b86be1cb63a2">
+	<property name="ireport.zoom" value="1.3310000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_proveedor" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     v_cuentas_prov.`cuentas_proveedor_cta_soles` AS v_cuentas_prov_cuentas_proveedor_cta_soles,
+     v_cuentas_prov.`cuentas_proveedor_cta_dolares` AS v_cuentas_prov_cuentas_proveedor_cta_dolares,
+     v_cuentas_prov.`cuentas_proveedor_cci_soles` AS v_cuentas_prov_cuentas_proveedor_cci_soles,
+     v_cuentas_prov.`cuentas_proveedor_cci_dolares` AS v_cuentas_prov_cuentas_proveedor_cci_dolares,
+     v_cuentas_prov.`proveedor_id_proveedor` AS v_cuentas_prov_proveedor_id_proveedor,
+     v_cuentas_prov.`proveedor_razon` AS v_cuentas_prov_proveedor_razon,
+     v_cuentas_prov.`proveedor_representante` AS v_cuentas_prov_proveedor_representante,
+     v_cuentas_prov.`proveedor_ruc` AS v_cuentas_prov_proveedor_ruc,
+     v_cuentas_prov.`proveedor_direccion` AS v_cuentas_prov_proveedor_direccion,
+     v_cuentas_prov.`proveedor_ciudad` AS v_cuentas_prov_proveedor_ciudad,
+     v_cuentas_prov.`proveedor_telefono` AS v_cuentas_prov_proveedor_telefono,
+     v_cuentas_prov.`proveedor_correo` AS v_cuentas_prov_proveedor_correo,
+     v_cuentas_prov.`banco_idbanco` AS v_cuentas_prov_banco_idbanco,
+     v_cuentas_prov.`banco_descripcion` AS v_cuentas_prov_banco_descripcion,
+     v_cuentas_prov.`banco_abeviatura` AS v_cuentas_prov_banco_abeviatura,
+     v_cuentas_prov.`cuentas_proveedor_id_proveedor` AS v_cuentas_prov_cuentas_proveedor_id_proveedor,
+     v_cuentas_prov.`cuentas_banco_idbanco` AS v_cuentas_prov_cuentas_banco_idbanco
+FROM
+     `v_cuentas_prov` v_cuentas_prov where v_cuentas_prov.`proveedor_id_proveedor`= $P{p_proveedor}]]>
+	</queryString>
+	<field name="v_cuentas_prov_cuentas_proveedor_cta_soles" class="java.lang.String"/>
+	<field name="v_cuentas_prov_cuentas_proveedor_cta_dolares" class="java.lang.String"/>
+	<field name="v_cuentas_prov_cuentas_proveedor_cci_soles" class="java.lang.String"/>
+	<field name="v_cuentas_prov_cuentas_proveedor_cci_dolares" class="java.lang.String"/>
+	<field name="v_cuentas_prov_proveedor_id_proveedor" class="java.lang.Integer"/>
+	<field name="v_cuentas_prov_proveedor_razon" class="java.lang.String"/>
+	<field name="v_cuentas_prov_proveedor_representante" class="java.lang.String"/>
+	<field name="v_cuentas_prov_proveedor_ruc" class="java.lang.String"/>
+	<field name="v_cuentas_prov_proveedor_direccion" class="java.lang.String"/>
+	<field name="v_cuentas_prov_proveedor_ciudad" class="java.lang.String"/>
+	<field name="v_cuentas_prov_proveedor_telefono" class="java.lang.String"/>
+	<field name="v_cuentas_prov_proveedor_correo" class="java.lang.String"/>
+	<field name="v_cuentas_prov_banco_idbanco" class="java.lang.Integer"/>
+	<field name="v_cuentas_prov_banco_descripcion" class="java.lang.String"/>
+	<field name="v_cuentas_prov_banco_abeviatura" class="java.lang.String"/>
+	<field name="v_cuentas_prov_cuentas_proveedor_id_proveedor" class="java.lang.Integer"/>
+	<field name="v_cuentas_prov_cuentas_banco_idbanco" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="37" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="450" height="35" forecolor="#990000" backcolor="#990000" uuid="ab58f173-8945-4414-9b57-2fad0acbb187"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="0" width="449" height="35" forecolor="#FFFFFF" uuid="ec95d1b4-f314-4f05-adc6-0af20461c0d2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NÚMERO CUENTAS BANCARIAS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement x="161" y="0" width="89" height="20" forecolor="#FFFFFF" backcolor="#990000" uuid="1da08c5a-bf1f-4497-a7a3-6eb8672c63fa"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="88" height="20" forecolor="#FFFFFF" backcolor="#990000" uuid="84b0d3ed-bf9e-4c32-ad53-526d38156a5e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="250" y="0" width="101" height="20" forecolor="#FFFFFF" backcolor="#990000" uuid="7cb53134-840f-4916-be44-db54ba412915"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="351" y="0" width="99" height="20" forecolor="#FFFFFF" backcolor="#990000" uuid="a63a5711-a3e7-453a-be26-266298899cce"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="0" width="87" height="20" forecolor="#FFFFFF" uuid="b8680203-61e1-4672-8ec7-e9e649292c7a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Banco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="161" y="1" width="89" height="19" forecolor="#FFFFFF" uuid="a9f41966-ea1e-4927-a4a2-ad73b9525a2a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CCI. Soles]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="88" y="0" width="73" height="20" forecolor="#FFFFFF" backcolor="#990000" uuid="0ef28ddd-dad7-4252-aadb-002fe6db2a2e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="88" y="1" width="73" height="19" forecolor="#FFFFFF" uuid="4c9c1258-2245-4f90-b3d2-e3f47e3d2dd5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CTA. Soles]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="1" width="101" height="19" forecolor="#FFFFFF" uuid="fbb61b9a-85b2-42a5-9c19-2c03febdebf0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CTA. Dolares]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="1" width="99" height="19" forecolor="#FFFFFF" uuid="c6e43820-2f2f-43ae-aa11-e4c127f776d1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CCI DOLARES]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="88" height="20" uuid="a0bc95dc-8c4c-4c9d-9395-4ce39663c6d5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{v_cuentas_prov_banco_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="88" y="0" width="73" height="20" uuid="d30b2cb1-8817-4e93-9ee9-d44b7e2f5d40"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{v_cuentas_prov_cuentas_proveedor_cta_soles}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="161" y="0" width="89" height="20" uuid="b0d2dcec-7cfc-46c5-b43f-6444d179b482"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{v_cuentas_prov_cuentas_proveedor_cci_soles}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="0" width="100" height="20" uuid="d847aa57-f65e-48f1-b84a-b41a140740f9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{v_cuentas_prov_cuentas_proveedor_cta_dolares}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="351" y="0" width="100" height="20" uuid="5cbdc749-27d7-4b3f-87a2-d3dfe91a3d3e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{v_cuentas_prov_cuentas_proveedor_cci_dolares}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

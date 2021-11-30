@@ -50,7 +50,7 @@ public class RPT_MATERIAL_OBRA extends javax.swing.JDialog {
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Reporte de personal por obra:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Reporte compra material por obra:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Seleccione Obra:");
@@ -120,7 +120,7 @@ public class RPT_MATERIAL_OBRA extends javax.swing.JDialog {
         {
             this.dispose();
             //reporte.Ver_Reporte_Parametro("RPT_Materiales_General.jasper", jComboBox1.getSelectedItem().toString().trim(), "p_obra");
-            reporte.Reporte_1Parametro_Imagen("RPT_Materiales_General.jasper","p_obra", jComboBox1.getSelectedItem().toString().trim(), "p_logo","/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+            reporte.Reporte_1Parametro_Imagen("RPT_Materiales_General.jasper","p_obra", jComboBox1.getSelectedItem().toString().trim(), "p_logo","/PQ_IMAGENES/LOGO_01V.png");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
