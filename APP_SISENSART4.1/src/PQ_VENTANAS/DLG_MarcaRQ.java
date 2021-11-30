@@ -35,8 +35,8 @@ public class DLG_MarcaRQ extends javax.swing.JDialog {
     private void initComponents() {
 
         JPMarcaRQ = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        TXcargo = new javax.swing.JTextField();
+        LBmarcaRQ = new javax.swing.JLabel();
+        TXmarcarq = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         BTc = new javax.swing.JButton();
@@ -53,12 +53,12 @@ public class DLG_MarcaRQ extends javax.swing.JDialog {
         JPMarcaRQ.setBackground(new java.awt.Color(255, 255, 255));
         JPMarcaRQ.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "MarcaRQ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Descripción:");
+        LBmarcaRQ.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        LBmarcaRQ.setText("Descripción:");
 
-        TXcargo.addKeyListener(new java.awt.event.KeyAdapter() {
+        TXmarcarq.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                TXcargoKeyPressed(evt);
+                TXmarcarqKeyPressed(evt);
             }
         });
 
@@ -136,9 +136,9 @@ public class DLG_MarcaRQ extends javax.swing.JDialog {
         JPMarcaRQLayout.setHorizontalGroup(
             JPMarcaRQLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPMarcaRQLayout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(LBmarcaRQ)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TXcargo))
+                .addComponent(TXmarcarq))
             .addGroup(JPMarcaRQLayout.createSequentialGroup()
                 .addGroup(JPMarcaRQLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -162,8 +162,8 @@ public class DLG_MarcaRQ extends javax.swing.JDialog {
             JPMarcaRQLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPMarcaRQLayout.createSequentialGroup()
                 .addGroup(JPMarcaRQLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(TXcargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LBmarcaRQ)
+                    .addComponent(TXmarcarq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JPMarcaRQLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTn)
@@ -193,12 +193,12 @@ public class DLG_MarcaRQ extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TXcargoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXcargoKeyPressed
+    private void TXmarcarqKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXmarcarqKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == evt.VK_ENTER) {
             BTn.doClick();
         }
-    }//GEN-LAST:event_TXcargoKeyPressed
+    }//GEN-LAST:event_TXmarcarqKeyPressed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -274,18 +274,18 @@ public class DLG_MarcaRQ extends javax.swing.JDialog {
     }
 
     private void Grabar() {
-        if (TXcargo.getText().trim().length() == 0) {
+        if (TXmarcarq.getText().trim().length() == 0) {
             ctrl.mensaje.MensajeAlerta("Ud. no ingresó el color");
-            TXcargo.requestFocus();
+            TXmarcarq.requestFocus();
         } else {
-            ctrl.GrabarData("marcarq", "descripcion", "'" + TXcargo.getText().trim().toUpperCase() + "'");
+            ctrl.GrabarData("marcarq", "descripcion", "'" + TXmarcarq.getText().trim().toUpperCase() + "'");
             Cancelar();
         }
     }
 
     private void Cancelar() {
         ctrl.VisualizarEnTabla("marcarq", TBcargo, "");
-        TXcargo.setText("");
+        TXmarcarq.setText("");
         ActivaBotones(true, false);
     }
 
@@ -295,29 +295,29 @@ public class DLG_MarcaRQ extends javax.swing.JDialog {
     }
 
     private void Modificar() {
-        if (TXcargo.getText().trim().length() == 0) {
+        if (TXmarcarq.getText().trim().length() == 0) {
             ctrl.mensaje.MensajeAlerta("Ud. no ingresó el marcarq");
-            TXcargo.requestFocus();
+            TXmarcarq.requestFocus();
         } else {
-            ctrl.ActualizarData("marcarq", "descripcion='" + TXcargo.getText().trim() + "'", "idmarcarq='" + TBcargo.getValueAt(TBcargo.getSelectedRow(), 0).toString().trim() + "'");
+            ctrl.ActualizarData("marcarq", "descripcion='" + TXmarcarq.getText().trim() + "'", "idmarcarq='" + TBcargo.getValueAt(TBcargo.getSelectedRow(), 0).toString().trim() + "'");
             Cancelar();
         }
     }
 
     private void PasarDatos() {
-        TXcargo.setText(TBcargo.getValueAt(TBcargo.getSelectedRow(), 1).toString().trim());
+        TXmarcarq.setText(TBcargo.getValueAt(TBcargo.getSelectedRow(), 1).toString().trim());
         ActivaBotones(false, true);
-        ctrl.Maracar(TXcargo);
+        ctrl.Maracar(TXmarcarq);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTc;
     private javax.swing.JButton BTm;
     private javax.swing.JButton BTn;
     private javax.swing.JPanel JPMarcaRQ;
+    private javax.swing.JLabel LBmarcaRQ;
     private javax.swing.JTable TBcargo;
-    private javax.swing.JTextField TXcargo;
+    private javax.swing.JTextField TXmarcarq;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
