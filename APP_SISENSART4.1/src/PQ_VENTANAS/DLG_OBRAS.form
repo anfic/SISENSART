@@ -105,9 +105,9 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="txtSede" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cmbSede" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnSede" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="cmbSede" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
