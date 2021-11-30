@@ -66,7 +66,7 @@ public class IFRM_ATENCION_REQUERIMIENTOS extends javax.swing.JInternalFrame {
             if(resp==0)
             {
                 ctrl.ActualizarData("requerimiento", "estado=4", "id_requerimiento='"+TBrequerimiento.getValueAt(TBrequerimiento.getSelectedRow(), 0).toString()+"'");
-                reporte.Reporte_1Parametro_Imagen("RPT_REQUERIMIENTOS.jasper", "p_codigo", TBrequerimiento.getValueAt(TBrequerimiento.getSelectedRow(), 0).toString().trim(), "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+                reporte.Reporte_1Parametro_Imagen("RPT_REQUERIMIENTOS.jasper", "p_codigo", TBrequerimiento.getValueAt(TBrequerimiento.getSelectedRow(), 0).toString().trim(), "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
                 Visualizar();
             }
             else
@@ -136,7 +136,7 @@ public class IFRM_ATENCION_REQUERIMIENTOS extends javax.swing.JInternalFrame {
             if(resp==JOptionPane.YES_OPTION)
             {
                 ctrl.ActualizarData("requerimiento", "estado=6", "id_requerimiento='"+TBdetalle.getValueAt(0, 2).toString().trim()+"'");
-                reporte.Reporte_1Parametro_Imagen("RPT_EVALUACION.jasper", "p_codigo", TXevaluacion.getText().trim(), "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+                reporte.Reporte_1Parametro_Imagen("RPT_EVALUACION.jasper", "p_codigo", TXevaluacion.getText().trim(), "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
                 LimpiarSeleccion();
             }
         }

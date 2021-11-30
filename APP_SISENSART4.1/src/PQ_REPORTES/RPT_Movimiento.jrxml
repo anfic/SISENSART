@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="425" pageHeight="842" columnWidth="385" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="043f1aa8-d5b1-48ab-8408-343ee9bdfa05">
 	<property name="ireport.zoom" value="1.24184264611831"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="3"/>
 	<parameter name="p_id" class="java.lang.String"/>
 	<parameter name="p_logo" class="java.io.InputStream"/>
 	<queryString>
@@ -54,18 +54,18 @@ WHERE
 	<title>
 		<band height="62" splitType="Stretch">
 			<staticText>
-				<reportElement x="140" y="0" width="245" height="20" uuid="7b478f4f-00e7-4a3a-93c6-046d92bdf4f9"/>
+				<reportElement x="117" y="0" width="268" height="20" uuid="7b478f4f-00e7-4a3a-93c6-046d92bdf4f9"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CONSTRUCTORA MLS SAC]]></text>
+				<text><![CDATA[DIAMOND Engieering & Development]]></text>
 			</staticText>
 			<image>
-				<reportElement x="0" y="0" width="133" height="60" uuid="288763c1-8081-46fb-8659-bcb07b166349"/>
+				<reportElement x="0" y="0" width="117" height="60" uuid="288763c1-8081-46fb-8659-bcb07b166349"/>
 				<imageExpression><![CDATA[$P{p_logo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="140" y="20" width="245" height="20" uuid="7617a033-a1cc-4ae4-812d-f1209bfac73c"/>
+				<reportElement x="117" y="20" width="268" height="20" uuid="7617a033-a1cc-4ae4-812d-f1209bfac73c"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>

@@ -188,11 +188,11 @@ public class DLG_CONSULTA_ACTIVOS extends javax.swing.JDialog {
             if(ctrl.ValorTabla(TBdetalle_orden, 1).equalsIgnoreCase("boleta"))
             {
                 this.dispose();
-                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_BOLETA.jasper", "p_codigo", ctrl.ValorTabla(TBdetalle_orden, 0), "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_BOLETA.jasper", "p_codigo", ctrl.ValorTabla(TBdetalle_orden, 0), "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
             }else
             {
                 this.dispose();
-                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_FACTURA.jasper", "p_codigo", ctrl.ValorTabla(TBdetalle_orden, 0), "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_FACTURA.jasper", "p_codigo", ctrl.ValorTabla(TBdetalle_orden, 0), "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
             }
         }
         

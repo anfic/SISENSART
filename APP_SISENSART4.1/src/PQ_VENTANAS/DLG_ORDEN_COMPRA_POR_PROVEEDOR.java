@@ -194,12 +194,12 @@ public class DLG_ORDEN_COMPRA_POR_PROVEEDOR extends javax.swing.JDialog {
         else if(ctrl.ValorTabla(jTable1, 4).equalsIgnoreCase("boleta"))
         {
             this.dispose();
-            reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_BOLETA.jasper", "p_codigo", ctrl.ValorTabla(jTable1, 0), "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+            reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_BOLETA.jasper", "p_codigo", ctrl.ValorTabla(jTable1, 0), "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
         }
         else
         {
             this.dispose();
-            reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_FACTURA.jasper", "p_codigo", ctrl.ValorTabla(jTable1, 0), "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+            reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_FACTURA.jasper", "p_codigo", ctrl.ValorTabla(jTable1, 0), "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

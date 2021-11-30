@@ -139,7 +139,7 @@ public class CLS_Controlador {
             SQL1 = "update " + TABLA + " set " + ATRIBUTOS + " WHERE " + CONDICION;
             Base.st.executeUpdate(SQL1.toUpperCase());
 //            Base.st.close();
-            mensaje.MensajeSimple("Se actualizó correctamente:\n" + SQL1);
+            mensaje.MensajeSimple("Se actualizó correctamente");
 //            System.out.println("Se actualizó correctamente:\n"+SQL1);
         } catch (SQLException ex) {
             mensaje.MensajeError("Actualizar valores de tabla: " + TABLA + ".\n" + ex.getMessage());

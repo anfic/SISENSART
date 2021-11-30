@@ -87,7 +87,6 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         jMenu9 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem27 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -394,15 +393,6 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         jMenu9.add(jMenuItem14);
 
         jMenu1.add(jMenu9);
-
-        jMenuItem27.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenuItem27.setText("Presupuesto de Obra");
-        jMenuItem27.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem27ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem27);
 
         jMenuItem21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuItem21.setText("Movimiento de Materiales");
@@ -832,11 +822,11 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
             String cons=ctrl.ObtenerCodigo("orden_compra", "id_orden", serie.trim(), 3);
             if(cons.equalsIgnoreCase("factura"))
             {
-                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_FACTURA.jasper", "p_codigo", serie, "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_FACTURA.jasper", "p_codigo", serie, "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
             }
             else if(cons.equalsIgnoreCase("boleta"))
             {
-                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_BOLETA.jasper", "p_codigo", serie, "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_BOLETA.jasper", "p_codigo", serie, "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
             }
         }
     }//GEN-LAST:event_jMenuItem20ActionPerformed
@@ -900,10 +890,6 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
             Logger.getLogger(MDI_PRINCIPAL.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem29ActionPerformed
-
-    private void jMenuItem27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem27ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem27ActionPerformed
 
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
         // TODO add your handling code here:
@@ -1011,7 +997,6 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem26;
-    private javax.swing.JMenuItem jMenuItem27;
     private javax.swing.JMenuItem jMenuItem28;
     private javax.swing.JMenuItem jMenuItem29;
     private javax.swing.JMenuItem jMenuItem3;
