@@ -104,8 +104,8 @@ public class CLS_Controlador {
     public void GrabarData(String TABLA, String ATRIBUTOS, String REGISTROS) {
         try {
             Base.st = Base.conec.createStatement();
-            SQL1 = "insert into " + TABLA + " (" + ATRIBUTOS + ") values(" + REGISTROS + ")";
-            Base.st.executeUpdate(SQL1.toUpperCase());
+            SQL1 = "insert into " + TABLA.toLowerCase() + " (" + ATRIBUTOS.toUpperCase() + ") values(" + REGISTROS + ")";
+            Base.st.executeUpdate(SQL1);
 //            Base.st.close();
             System.out.println("Se guardó correctamente:\n" + SQL1);
         } catch (SQLException ex) {
@@ -118,7 +118,7 @@ public class CLS_Controlador {
     public void EliminarData(String TABLA, String Condicion) {
         try {
             Base.st = Base.conec.createStatement();
-            SQL1 = "delete from " + TABLA + " " + Condicion + "";
+            SQL1 = "delete from " + TABLA.toLowerCase() + " " + Condicion + "";
             Base.st.executeUpdate(SQL1);
 //            Base.st.close();
 //            mensaje.MensajeSimple("Eliminó Correctamente:\n"+SQL1);
@@ -136,8 +136,8 @@ public class CLS_Controlador {
     public void ActualizarData(String TABLA, String ATRIBUTOS, String CONDICION) {
         try {
             Base.st = Base.conec.createStatement();
-            SQL1 = "update " + TABLA + " set " + ATRIBUTOS + " WHERE " + CONDICION;
-            Base.st.executeUpdate(SQL1.toUpperCase());
+            SQL1 = "update " + TABLA.toLowerCase() + " set " + ATRIBUTOS.toUpperCase() + " WHERE " + CONDICION;
+            Base.st.executeUpdate(SQL1);
 //            Base.st.close();
             mensaje.MensajeSimple("Se actualizó correctamente:\n" + SQL1);
 //            System.out.println("Se actualizó correctamente:\n"+SQL1);
@@ -156,7 +156,7 @@ public class CLS_Controlador {
     public void VisualizarEnTabla(String TABLA, JTable jtable, String Condicion) {
         try {
             Base.st = Base.conec.createStatement();
-            SQL1 = "select * from " + TABLA + " " + Condicion;
+            SQL1 = "select * from " + TABLA.toLowerCase() + " " + Condicion;
             Base.rt = Base.st.executeQuery(SQL1);
             Base.rsm = Base.rt.getMetaData();
             ArrayList<Object[]> data = new ArrayList<>();
@@ -182,7 +182,7 @@ public class CLS_Controlador {
 
         try {
             Base.st = Base.conec.createStatement();
-            SQL1 = "select " + Atributos + " from " + TABLA + " " + Condicion;
+            SQL1 = "select " + Atributos + " from " + TABLA.toLowerCase() + " " + Condicion;
             Base.rt = Base.st.executeQuery(SQL1);
             Base.rsm = Base.rt.getMetaData();
             ArrayList<Object[]> data = new ArrayList<>();
@@ -237,7 +237,7 @@ public class CLS_Controlador {
 
     public String ObtenerCodigo(String Tabla, String Cmp, String vl, int ps) {
         String rt = "", Sql = "";
-        Sql = "Select * from " + Tabla + " where " + Cmp + "='" + vl + "'";
+        Sql = "Select * from " + Tabla.toLowerCase() + " where " + Cmp + "='" + vl + "'";
         try {
             Base.st = Base.conec.createStatement();
             Base.rt = Base.st.executeQuery(Sql);
@@ -254,7 +254,7 @@ public class CLS_Controlador {
 
     public String ConsultaCamposEspecificosSQL(String Tabla, String Condicion, int ps) {
         String rt = "", Sql = "";
-        Sql = "Select * from " + Tabla + " where " + Condicion + "";
+        Sql = "Select * from " + Tabla.toLowerCase() + " where " + Condicion + "";
         try {
             Base.st = Base.conec.createStatement();
             Base.rt = Base.st.executeQuery(Sql);
@@ -289,7 +289,7 @@ public class CLS_Controlador {
         textAutoCompleter = new TextAutoCompleter(tx);
         try {
             Base.st = Base.conec.createStatement();
-            Base.rt = Base.st.executeQuery(consulta);
+            Base.rt = Base.st.executeQuery(consulta.toLowerCase());
             while (Base.rt.next()) {
                 textAutoCompleter.addItem(Base.rt.getString(pos).toString());
             }
@@ -318,7 +318,7 @@ public class CLS_Controlador {
         String return_string = "";
         try {
             Base.st = Base.conec.createStatement();
-            Base.rt = Base.st.executeQuery(consulta);
+            Base.rt = Base.st.executeQuery(consulta.toLowerCase());
             while (Base.rt.next()) {
                 return_string = Base.rt.getString(pos);
             }
@@ -409,7 +409,7 @@ public class CLS_Controlador {
     public boolean AccesoAlSistema(String Tabla, String Campo_usuario, String usuario, String Campo_Password, JPasswordField password, String OtraCondicion) {
         boolean b = false;
         try {
-            SQL1 = "select * from " + Tabla + " where " + Campo_usuario + "='" + usuario.trim() + "' and " + Campo_Password + "='" + password.getText().trim() + "' " + OtraCondicion + "";
+            SQL1 = "select * from " + Tabla.toLowerCase() + " where " + Campo_usuario + "='" + usuario.trim() + "' and " + Campo_Password + "='" + password.getText().trim() + "' " + OtraCondicion + "";
             Base.st = Base.conec.createStatement();
             Base.rt = Base.st.executeQuery(SQL1);
             if (Base.rt.next()) {
@@ -472,7 +472,7 @@ public class CLS_Controlador {
         try {
             cbo.removeAllItems();
             Base.st = Conexion_BD.conec.createStatement();
-            Base.rt = Base.st.executeQuery(Consulta);
+            Base.rt = Base.st.executeQuery(Consulta.toLowerCase());
             while (Base.rt.next()) {
                 cbo.addItem(Base.rt.getString(pos));
             }
@@ -489,7 +489,7 @@ public class CLS_Controlador {
         try {
             cbo.removeAllItems();
             Base.st = Conexion_BD.conec.createStatement();
-            Base.rt = Base.st.executeQuery(Consulta);
+            Base.rt = Base.st.executeQuery(Consulta.toLowerCase());
             while (Base.rt.next()) {
                 cbo.addItem(Base.rt.getString(pos) + "                  " + Base.rt.getString(pos2));
             }
@@ -507,7 +507,7 @@ public class CLS_Controlador {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         try {
             //"SELECT ARTICULO_descripcion,DETALLE_ALMACEN_stock FROM  v_detalle_almacen  WHERE (ARTICULO_descripcion LIKE 'b%' and ALMACEN_descripcion='central' and DETALLE_ALMACEN_stock>0 )";
-            String query = "SELECT " + ListaVer + " FROM " + Tabla + " WHERE (" + ListaVer + " LIKE '" + cadenaEscrita + "%'  " + condicion2 + ")";
+            String query = "SELECT " + ListaVer + " FROM " + Tabla.toLowerCase() + " WHERE (" + ListaVer + " LIKE '" + cadenaEscrita + "%'  " + condicion2 + ")";
             Base.st = Base.conec.createStatement();
             Base.rt = (ResultSet) Base.st.executeQuery(query);
             while (Base.rt.next()) {
@@ -553,7 +553,7 @@ public class CLS_Controlador {
         String can = "";
         try {
             Base.st = Base.conec.createStatement();
-            Base.rt = Base.st.executeQuery("select count(*) from " + Tabla + " " + Condicion);
+            Base.rt = Base.st.executeQuery("select count(*) from " + Tabla.toLowerCase() + " " + Condicion);
             if (Base.rt.next()) {
                 can = Base.rt.getString(1);
             }
@@ -570,7 +570,7 @@ public class CLS_Controlador {
         boolean resp = false;
         try {
             Base.st = Base.conec.createStatement();
-            Base.rt = Base.st.executeQuery(consulta + " " + Condicion);
+            Base.rt = Base.st.executeQuery(consulta.toLowerCase() + " " + Condicion);
             if (Base.rt.next()) {
                 resp = true;
             }
@@ -660,7 +660,7 @@ public class CLS_Controlador {
         String codigo = "No hay códigos registrador";
         try {
             Base.st = Base.conec.createStatement();
-            Base.rt = Base.st.executeQuery("Select " + id + " from " + tabla + " order by " + id + " DESC LIMIT 1");
+            Base.rt = Base.st.executeQuery("Select " + id + " from " + tabla.toLowerCase() + " order by " + id + " DESC LIMIT 1");
             if (Base.rt.next()) {
                 codigo = Base.rt.getString(1);
             }
@@ -811,7 +811,7 @@ public class CLS_Controlador {
         try {
             File file = new File(DireccionFoto);
             fis = new FileInputStream(file);
-            Base.prest = Base.getConnection().prepareStatement("update " + Tabla + " set " + NombreAtribFoto + "=? where " + CodigoIdentificador + "='" + TBtabla.getValueAt(TBtabla.getSelectedRow(), posicion).toString().trim() + "'");
+            Base.prest = Base.getConnection().prepareStatement("update " + Tabla.toLowerCase() + " set " + NombreAtribFoto + "=? where " + CodigoIdentificador + "='" + TBtabla.getValueAt(TBtabla.getSelectedRow(), posicion).toString().trim() + "'");
             Base.prest.setBinaryStream(1, fis, (int) file.length());
             Base.prest.execute();
             mensaje.MensajeAlerta("Grabó exitosamente:\n" + Base.prest);
@@ -835,12 +835,12 @@ public class CLS_Controlador {
             label.setIcon(null);
             mensaje.MensajeAlerta("Esta persona no cuenta con una " + AtributoFoto);
         } else {
-            CargarFotoJLabel(AtributoFoto, Tabla, IdentificadorFoto, ValorComparacion, label, ancho, largo);
+            CargarFotoJLabel(AtributoFoto, Tabla.toLowerCase(), IdentificadorFoto, ValorComparacion, label, ancho, largo);
         }
     }
 
     public void CargarFotoJLabel(String Fotografia, String Tabla, String IdentificadorFoto, String id, JLabel jlabel, int ancho, int alto) {
-        Image dtCat = Devolverfoto(Fotografia, Tabla, IdentificadorFoto, id);
+        Image dtCat = Devolverfoto(Fotografia, Tabla.toLowerCase(), IdentificadorFoto, id);
         Icon icon;
         if (dtCat != null) {
             icon = new ImageIcon(dtCat.getScaledInstance(ancho, alto, java.awt.Image.SCALE_SMOOTH));
@@ -852,7 +852,7 @@ public class CLS_Controlador {
 
     public Image Devolverfoto(String Fotografia, String Tabla, String IdentificadorFoto, String id) {
         try {
-            Base.prest = Base.getConnection().prepareStatement("SELECT " + Fotografia + " from " + Tabla + " where " + IdentificadorFoto + " = ? ");
+            Base.prest = Base.getConnection().prepareStatement("SELECT " + Fotografia + " from " + Tabla.toLowerCase() + " where " + IdentificadorFoto + " = ? ");
             Base.prest.setString(1, id);
             Base.rt = Base.prest.executeQuery();
             while (Base.rt.next()) {
@@ -901,7 +901,7 @@ public class CLS_Controlador {
             SQL1 = Sentencia;
             Base.st.executeUpdate(SQL1.toUpperCase());
             Base.st.close();
-            System.out.println("Sentencia Ejecutada:\n" + SQL1);
+            System.out.println("Sentencia Ejecutada:\n" + SQL1.toLowerCase());
         } catch (SQLException ex) {
             mensaje.MensajeError("Error al ejecutar sentencia:\n" + ex.getMessage());
         }
