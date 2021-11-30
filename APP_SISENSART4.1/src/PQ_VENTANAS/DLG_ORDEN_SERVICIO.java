@@ -41,6 +41,10 @@ public class DLG_ORDEN_SERVICIO extends javax.swing.JDialog {
         txtProveedorCod = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        lblPago2 = new javax.swing.JLabel();
+        txtSolNom = new javax.swing.JTextField();
+        lblPago3 = new javax.swing.JLabel();
+        txtSolCorreo = new javax.swing.JTextField();
         txtProveedorNom = new javax.swing.JTextField();
         lblCostos = new javax.swing.JLabel();
         txtcostos = new javax.swing.JTextField();
@@ -48,6 +52,10 @@ public class DLG_ORDEN_SERVICIO extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         btnReq = new javax.swing.JButton();
         txtCodReq = new javax.swing.JTextField();
+        BTgrabar = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        BTeditar = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo orden de servicio");
@@ -87,15 +95,47 @@ public class DLG_ORDEN_SERVICIO extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true), "Solicitante:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
 
+        lblPago2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblPago2.setText("Nombre:");
+
+        txtSolNom.setBackground(new java.awt.Color(255, 255, 153));
+        txtSolNom.setEnabled(false);
+
+        lblPago3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblPago3.setText("Correo:");
+
+        txtSolCorreo.setBackground(new java.awt.Color(255, 255, 153));
+        txtSolCorreo.setEnabled(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblPago3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtSolCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblPago2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtSolNom, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPago2)
+                    .addComponent(txtSolNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPago3)
+                    .addComponent(txtSolCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         txtProveedorNom.setBackground(new java.awt.Color(255, 255, 153));
@@ -124,6 +164,42 @@ public class DLG_ORDEN_SERVICIO extends javax.swing.JDialog {
 
         txtCodReq.setBackground(new java.awt.Color(255, 255, 153));
         txtCodReq.setEnabled(false);
+
+        BTgrabar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BTgrabar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PQ_IMAGENES/GUARDAR.png"))); // NOI18N
+        BTgrabar.setText("Grabar");
+        BTgrabar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTgrabarActionPerformed(evt);
+            }
+        });
+
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PQ_IMAGENES/CANCELAR.png"))); // NOI18N
+        jButton4.setText("Cancelar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        BTeditar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BTeditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PQ_IMAGENES/EDITAR.png"))); // NOI18N
+        BTeditar.setText("Editar");
+        BTeditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTeditarActionPerformed(evt);
+            }
+        });
+
+        jButton6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/PQ_IMAGENES/SALIR.png"))); // NOI18N
+        jButton6.setText("Salir");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -167,6 +243,16 @@ public class DLG_ORDEN_SERVICIO extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(BTgrabar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BTeditar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +287,13 @@ public class DLG_ORDEN_SERVICIO extends javax.swing.JDialog {
                     .addComponent(txtCodReq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BTgrabar)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BTeditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -233,9 +325,34 @@ public class DLG_ORDEN_SERVICIO extends javax.swing.JDialog {
         // TODO add your handling code here:
         if(cmbReq.getSelectedIndex() == 0){
             btnReq.setEnabled(true);
+            txtSolNom.setEnabled(false);
+            txtSolCorreo.setEnabled(false);
         }else{
-        btnReq.setEnabled(false);}
+        btnReq.setEnabled(false);
+        txtSolNom.setEnabled(true);
+            txtSolCorreo.setEnabled(true);
+        }
     }//GEN-LAST:event_cmbReqItemStateChanged
+
+    private void BTgrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTgrabarActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_BTgrabarActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void BTeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTeditarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_BTeditarActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,12 +397,16 @@ public class DLG_ORDEN_SERVICIO extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BTeditar;
+    private javax.swing.JButton BTgrabar;
     private javax.swing.JButton btnReq;
     private javax.swing.JComboBox<String> cmbReq;
     private javax.swing.JComboBox<String> cmbmoneda;
     private javax.swing.JComboBox<String> cmbpago;
     private com.toedter.calendar.JDateChooser dateEntrega;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -294,11 +415,15 @@ public class DLG_ORDEN_SERVICIO extends javax.swing.JDialog {
     private javax.swing.JLabel lblCostos;
     private javax.swing.JLabel lblPago;
     private javax.swing.JLabel lblPago1;
+    private javax.swing.JLabel lblPago2;
+    private javax.swing.JLabel lblPago3;
     private javax.swing.JLabel lblentrega;
     private javax.swing.JLabel lblentrega1;
     private javax.swing.JTextField txtCodReq;
     private javax.swing.JTextField txtProveedorCod;
     private javax.swing.JTextField txtProveedorNom;
+    private javax.swing.JTextField txtSolCorreo;
+    private javax.swing.JTextField txtSolNom;
     private javax.swing.JTextField txtcostos;
     // End of variables declaration//GEN-END:variables
 }
