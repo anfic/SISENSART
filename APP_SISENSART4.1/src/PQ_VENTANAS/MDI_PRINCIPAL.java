@@ -87,6 +87,7 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         jMenu9 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        menuOrdenServicio = new javax.swing.JMenuItem();
         jMenuItem27 = new javax.swing.JMenuItem();
         jMenuItem21 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -392,6 +393,15 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
             }
         });
         jMenu9.add(jMenuItem14);
+
+        menuOrdenServicio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        menuOrdenServicio.setText("Orden de Servicio");
+        menuOrdenServicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuOrdenServicioActionPerformed(evt);
+            }
+        });
+        jMenu9.add(menuOrdenServicio);
 
         jMenu1.add(jMenu9);
 
@@ -928,6 +938,11 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         dlg.setVisible(true);
     }//GEN-LAST:event_MenuInformeProveedorActionPerformed
 
+    private void menuOrdenServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOrdenServicioActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_menuOrdenServicioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1025,6 +1040,7 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem menuOrdenServicio;
     private org.edisoncor.gui.panel.PanelCurves panelCurves2;
     // End of variables declaration//GEN-END:variables
 
