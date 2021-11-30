@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c49cb5de-ae0c-442f-bd46-5d529adb78e3">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="1.1269722013523664"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="398"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="p_codigo" class="java.lang.String"/>
 	<parameter name="p_logo" class="java.io.InputStream"/>
 	<queryString>
@@ -38,14 +38,27 @@
      orden_compra.`solicitante` AS orden_compra_solicitante,
      orden_compra.`obra` AS orden_compra_obra,
      orden_compra.`placa` AS orden_compra_placa,
-     orden_compra.`descuento` AS orden_compra_descuento
+     orden_compra.`descuento` AS orden_compra_descuento,
+     cuentas_proveedor.`cta_soles` AS cuentas_proveedor_cta_soles,
+     cuentas_proveedor.`cci_soles` AS cuentas_proveedor_cci_soles,
+     banco.`descripcion` AS banco_descripcion,
+     banco.`abeviatura` AS banco_abeviatura,
+     configuracion_empresa.`idconfiguracion_empresa` AS configuracion_empresa_idconfiguracion_empresa,
+     configuracion_empresa.`razon_social` AS configuracion_empresa_razon_social,
+     configuracion_empresa.`ruc` AS configuracion_empresa_ruc,
+     configuracion_empresa.`direccion` AS configuracion_empresa_direccion,
+     configuracion_empresa.`telefono` AS configuracion_empresa_telefono,
+     configuracion_empresa.`representante_legal` AS configuracion_empresa_representante_legal
 FROM
      `serie_orden` serie_orden INNER JOIN `orden_compra` orden_compra ON serie_orden.`id_serie` = orden_compra.`id_serie`
      INNER JOIN `proveedor` proveedor ON orden_compra.`id_proveedor` = proveedor.`id_proveedor`
      INNER JOIN `detalle_orden` detalle_orden ON orden_compra.`id_orden` = detalle_orden.`id_orden`
      INNER JOIN `material` material ON detalle_orden.`id_material` = material.`id_material`
+     INNER JOIN `cuentas_proveedor` cuentas_proveedor ON proveedor.`id_proveedor` = cuentas_proveedor.`proveedor_id_proveedor`
+     INNER JOIN `banco` banco ON cuentas_proveedor.`banco_idbanco` = banco.`idbanco`,
+     `configuracion_empresa` configuracion_empresa
 WHERE
-     orden_compra.`id_orden` = $P{p_codigo}]]>
+     orden_compra.`id_orden` = $P{p_codigo} GROUP BY material.`descripcion`]]>
 	</queryString>
 	<field name="orden_compra_id_orden" class="java.lang.Integer"/>
 	<field name="orden_compra_fecha" class="java.sql.Date"/>
@@ -79,23 +92,33 @@ WHERE
 	<field name="orden_compra_obra" class="java.lang.String"/>
 	<field name="orden_compra_placa" class="java.lang.String"/>
 	<field name="orden_compra_descuento" class="java.math.BigDecimal"/>
+	<field name="cuentas_proveedor_cta_soles" class="java.lang.String"/>
+	<field name="cuentas_proveedor_cci_soles" class="java.lang.String"/>
+	<field name="banco_descripcion" class="java.lang.String"/>
+	<field name="banco_abeviatura" class="java.lang.String"/>
+	<field name="configuracion_empresa_idconfiguracion_empresa" class="java.lang.Integer"/>
+	<field name="configuracion_empresa_razon_social" class="java.lang.String"/>
+	<field name="configuracion_empresa_ruc" class="java.lang.String"/>
+	<field name="configuracion_empresa_direccion" class="java.lang.String"/>
+	<field name="configuracion_empresa_telefono" class="java.lang.String"/>
+	<field name="configuracion_empresa_representante_legal" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
 		<band height="62" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="91" height="60" uuid="e6a1f94f-9826-402c-b0b6-d14557beef01"/>
+			</rectangle>
 			<image>
-				<reportElement x="0" y="0" width="224" height="62" uuid="a58fae6d-fc35-46c7-8a3e-4cccb8ae32f5"/>
+				<reportElement x="1" y="0" width="90" height="62" uuid="a58fae6d-fc35-46c7-8a3e-4cccb8ae32f5"/>
 				<imageExpression><![CDATA[$P{p_logo}]]></imageExpression>
 			</image>
 			<rectangle>
 				<reportElement x="455" y="0" width="100" height="20" uuid="ad2daf16-5e08-4ed0-9766-b5b8f1abc63b"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="334" y="20" width="69" height="20" uuid="1dc62309-3f38-4b80-ae34-78dadedd3252"/>
-			</rectangle>
-			<rectangle>
-				<reportElement x="455" y="20" width="100" height="20" uuid="d765b46c-418b-45ba-95cb-8a12b93b9421"/>
+				<reportElement x="147" y="40" width="69" height="20" uuid="1dc62309-3f38-4b80-ae34-78dadedd3252"/>
 			</rectangle>
 			<rectangle>
 				<reportElement x="507" y="40" width="48" height="20" uuid="ce8e1b0b-ad33-444b-89c3-b472156767f2"/>
@@ -108,39 +131,32 @@ WHERE
 				<textFieldExpression><![CDATA[$F{orden_compra_id_orden}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="382" y="0" width="73" height="20" uuid="d8f3bddc-b20b-4050-95aa-f324c672a3fe"/>
+				<reportElement x="395" y="0" width="60" height="20" uuid="d8f3bddc-b20b-4050-95aa-f324c672a3fe"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Código Orden:]]></text>
 			</staticText>
 			<textField pattern="">
-				<reportElement x="334" y="20" width="69" height="20" uuid="22351bc9-e2a1-491d-8ffd-5876b4ebc882"/>
+				<reportElement x="147" y="40" width="69" height="20" uuid="22351bc9-e2a1-491d-8ffd-5876b4ebc882"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA["00"+$F{serie_orden_serie}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="301" y="20" width="33" height="20" uuid="00fcca37-9825-4847-a3ab-c59f0d01380b"/>
+				<reportElement x="114" y="40" width="33" height="20" uuid="00fcca37-9825-4847-a3ab-c59f0d01380b"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Serie:]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="405" y="20" width="50" height="20" uuid="a332a814-c802-4747-a90f-4ab95bfa22c7"/>
-				<textElement verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[Número:]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="455" y="20" width="100" height="20" uuid="3f6d81b6-687f-45e8-9b7c-0ee9050d2605"/>
+				<reportElement x="91" y="0" width="304" height="40" uuid="3f6d81b6-687f-45e8-9b7c-0ee9050d2605"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{orden_compra_nro_orden}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["ORDEN DE COMPRA: "+ $F{orden_compra_nro_orden}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="507" y="40" width="48" height="20" uuid="92f3bcbd-00a1-4ea5-ab84-f5b6aa91aa92"/>
@@ -160,13 +176,6 @@ WHERE
 	</title>
 	<pageHeader>
 		<band height="243" splitType="Stretch">
-			<staticText>
-				<reportElement x="0" y="0" width="552" height="28" uuid="b6a9280e-66a3-494b-965e-f9bfe5eb3a62"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="17" isBold="true"/>
-				</textElement>
-				<text><![CDATA[--------------------------ORDEN DE COMPRA-------------------------]]></text>
-			</staticText>
 			<rectangle radius="10">
 				<reportElement x="0" y="33" width="269" height="112" backcolor="#FFFFFF" uuid="c8725430-0ed9-4339-81aa-6a43214e78be"/>
 			</rectangle>

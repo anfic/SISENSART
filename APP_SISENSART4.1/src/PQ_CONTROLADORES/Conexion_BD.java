@@ -32,14 +32,14 @@ public class Conexion_BD
         try
         {
             //Ingreso interno de base de datos
-            usu="root";
+            usu="construc_anfic";
 //            contrasena="18101987";
 //            host="192.168.1.200";
 //            db="bd_sisensart_v3";
 //            usu="root";
-            contrasena="71536075";
-            host="localhost";
-            db="bd_sisensart_v5";
+            contrasena="18101987";
+            host="www.constructoramls.com";
+            db="construc_logistica";
             URL="jdbc:mysql://"+host+"/"+db;
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             conec=DriverManager.getConnection(URL, usu, contrasena);

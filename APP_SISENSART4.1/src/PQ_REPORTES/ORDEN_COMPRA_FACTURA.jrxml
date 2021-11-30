@@ -58,7 +58,7 @@ FROM
      INNER JOIN `banco` banco ON cuentas_proveedor.`banco_idbanco` = banco.`idbanco`,
      `configuracion_empresa` configuracion_empresa
 WHERE
-     orden_compra.`id_orden` = $P{p_codigo}]]>
+     orden_compra.`id_orden` = $P{p_codigo} GROUP BY material.`descripcion`]]>
 	</queryString>
 	<field name="orden_compra_id_orden" class="java.lang.Integer"/>
 	<field name="orden_compra_fecha" class="java.sql.Date"/>
@@ -110,7 +110,7 @@ WHERE
 				<reportElement x="2" y="1" width="88" height="52" uuid="2c3b92f9-b07c-4fd0-b9c9-a2852fe249b4"/>
 			</rectangle>
 			<image>
-				<reportElement x="2" y="1" width="88" height="51" uuid="a58fae6d-fc35-46c7-8a3e-4cccb8ae32f5"/>
+				<reportElement x="11" y="14" width="79" height="38" uuid="a58fae6d-fc35-46c7-8a3e-4cccb8ae32f5"/>
 				<imageExpression><![CDATA[$P{p_logo}]]></imageExpression>
 			</image>
 			<rectangle>
