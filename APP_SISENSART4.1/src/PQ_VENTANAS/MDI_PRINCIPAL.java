@@ -95,7 +95,10 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem16 = new javax.swing.JMenuItem();
+        MENUGENERALPROVEEDOR = new javax.swing.JMenu();
+        MenuProveedor = new javax.swing.JMenuItem();
+        Menubanco = new javax.swing.JMenuItem();
+        MenuInformeProveedor = new javax.swing.JMenuItem();
         jMenu10 = new javax.swing.JMenu();
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem22 = new javax.swing.JMenuItem();
@@ -140,7 +143,7 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(desktopPaneLayout.createSequentialGroup()
-                .addContainerGap(428, Short.MAX_VALUE)
+                .addContainerGap(430, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelCurves2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -457,14 +460,37 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
 
         jMenu3.add(jMenu4);
 
-        jMenuItem16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jMenuItem16.setText("Proveedores");
-        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+        MENUGENERALPROVEEDOR.setText("Proveedores");
+        MENUGENERALPROVEEDOR.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        MenuProveedor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MenuProveedor.setText("Proveedor");
+        MenuProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem16ActionPerformed(evt);
+                MenuProveedorActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem16);
+        MENUGENERALPROVEEDOR.add(MenuProveedor);
+
+        Menubanco.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Menubanco.setText("Banco");
+        Menubanco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenubancoActionPerformed(evt);
+            }
+        });
+        MENUGENERALPROVEEDOR.add(Menubanco);
+
+        MenuInformeProveedor.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        MenuInformeProveedor.setText("Informe Proveedor");
+        MenuInformeProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuInformeProveedorActionPerformed(evt);
+            }
+        });
+        MENUGENERALPROVEEDOR.add(MenuInformeProveedor);
+
+        jMenu3.add(MENUGENERALPROVEEDOR);
 
         jMenu10.setText("Almacenes");
         jMenu10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -733,12 +759,6 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         dlg.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
-    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        // TODO add your handling code here:
-        DLG_PROVEEDOR dlg=new DLG_PROVEEDOR(this, true);
-        dlg.setVisible(true);
-    }//GEN-LAST:event_jMenuItem16ActionPerformed
-
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
         IFRM_ORDEN_COMPRA frm=new IFRM_ORDEN_COMPRA();
@@ -890,6 +910,23 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         DLG_Mantenimiento_Sede dlg=new DLG_Mantenimiento_Sede(this, true);
         dlg.setVisible(true);
     }//GEN-LAST:event_jMenuItem30ActionPerformed
+    private void MenuProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuProveedorActionPerformed
+        // TODO add your handling code here:
+        DLG_PROVEEDOR dlg=new DLG_PROVEEDOR(this, true);
+        dlg.setVisible(true); 
+    }//GEN-LAST:event_MenuProveedorActionPerformed
+
+    private void MenubancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenubancoActionPerformed
+        // TODO add your handling code here:
+        DLG_Banco dlg=new DLG_Banco(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_MenubancoActionPerformed
+
+    private void MenuInformeProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuInformeProveedorActionPerformed
+        // TODO add your handling code here:
+        DLG_Informe_Reporte dlg=new DLG_Informe_Reporte(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_MenuInformeProveedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -927,6 +964,10 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu MENUGENERALPROVEEDOR;
+    private javax.swing.JMenuItem MenuInformeProveedor;
+    private javax.swing.JMenuItem MenuProveedor;
+    private javax.swing.JMenuItem Menubanco;
     public static javax.swing.JTextField TXcargo;
     public static javax.swing.JTextField TXnick;
     public static javax.swing.JTextField TXusuario;
@@ -959,7 +1000,6 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;

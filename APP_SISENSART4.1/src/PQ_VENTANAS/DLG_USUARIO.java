@@ -32,18 +32,21 @@ public class DLG_USUARIO extends javax.swing.JDialog {
         CBtipo.setSelectedIndex(-1);
         CBcago.setSelectedIndex(-1);
         TXurl.setText("");
+        TXcorreo.setText("");
         LBfoto.setIcon(null);
         ctrl.VisualizarEnTabla("v_usuario", TBusuario, "");
         Activabotones(true, false);
     }
     private void Pasar()
     {
+        Activabotones(false, true);
         TXnombre.setText(ctrl.ValorTabla(TBusuario, 1));
         TXnick.setText(ctrl.ValorTabla(TBusuario, 2));
         TXcontraseña.setText(ctrl.ValorTabla(TBusuario, 3));
         CBcago.setSelectedItem(ctrl.ValorTabla(TBusuario, 6));
+        TXcorreo.setText(ctrl.ValorTabla(TBusuario, 7));
         CBtipo.setSelectedIndex(-1);
-        Activabotones(false, true);
+        //Activabotones(false, true);
         ctrl.Maracar(TXnombre);
     }
     private void Grabar()
@@ -75,13 +78,14 @@ public class DLG_USUARIO extends javax.swing.JDialog {
         }
         else
         {
-            String nom,nik,con,tipo,car;
+            String nom,nik,con,tipo,car,cor;
             nom=TXnombre.getText().trim();
             nik=TXnick.getText().trim();
             con=TXcontraseña.getText().trim();
             tipo=CBtipo.getSelectedItem().toString().substring(0, 1).trim();
             car=ctrl.ObtenerCodigo("cargo", "descripcion", CBcago.getSelectedItem().toString().trim(), 1);
-            ctrl.GrabarData("usuario", "nombres,nick,contraseña,estado,tipo_usuario,id_cargo", "'"+nom+"','"+nik+"','"+con+"',2,'"+tipo+"','"+car+"'");
+            cor=TXcorreo.getText().trim();
+            ctrl.GrabarData("usuario", "nombres,nick,contraseña,estado,tipo_usuario,id_cargo,correo", "'"+nom+"','"+nik+"','"+con+"',2,'"+tipo+"','"+car+"','"+cor+"'");
             Cancelar();
         }     
     }
@@ -114,7 +118,7 @@ public class DLG_USUARIO extends javax.swing.JDialog {
         }
         else
         {
-            ctrl.ActualizarData("usuario", "nombres='"+TXnombre.getText().trim()+"',nick='"+TXnick.getText().trim()+"',contraseña='"+TXcontraseña.getText().trim()+"',estado=2,tipo_usuario='"+CBtipo.getSelectedItem().toString().substring(0, 1).trim()+"',id_cargo='"+ctrl.ObtenerCodigo("cargo", "descripcion", CBcago.getSelectedItem().toString().trim(), 1)+"'", "id_usuario='"+ctrl.ValorTabla(TBusuario, 0)+"'");
+            ctrl.ActualizarData("usuario", "nombres='"+TXnombre.getText().trim()+"',nick='"+TXnick.getText().trim()+"',contraseña='"+TXcontraseña.getText().trim()+"',estado=2,tipo_usuario='"+CBtipo.getSelectedItem().toString().substring(0, 1).trim()+"',id_cargo='"+ctrl.ObtenerCodigo("cargo", "descripcion", CBcago.getSelectedItem().toString().trim(), 1)+"',correo='"+TXcorreo.getText().trim()+"'", "id_usuario='"+ctrl.ValorTabla(TBusuario, 0)+"'");
             Cancelar();
         }     
     }
@@ -157,6 +161,8 @@ public class DLG_USUARIO extends javax.swing.JDialog {
         BTeditar = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        lbcorreo = new javax.swing.JLabel();
+        TXcorreo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("VENTANA DE MANTENIMIENTO DE USUARIOS");
@@ -196,7 +202,6 @@ public class DLG_USUARIO extends javax.swing.JDialog {
         jLabel4.setText("Tipo de Usuario:");
 
         CBtipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1 - SUPER ADMINISTRADOR", "2 - GERENTE GENERAL", "3 - ADMINISTRADOR LOGISTICO", "4 - ADMINISTRADOR REQUIRIENTE", "5 - USUARIO REGISTRADO" }));
-        CBtipo.setSelectedIndex(-1);
         CBtipo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CBtipoKeyPressed(evt);
@@ -257,11 +262,11 @@ public class DLG_USUARIO extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Código", "Usuario", "Nick", "Contraseña", "Estado", "Tipo", "Cargo"
+                "Código", "Usuario", "Nick", "Contraseña", "Estado", "Tipo", "Cargo", "Correo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, true, false
+                false, false, false, false, false, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -319,47 +324,58 @@ public class DLG_USUARIO extends javax.swing.JDialog {
             }
         });
 
+        lbcorreo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbcorreo.setText("Correo:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CBtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TXnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(TXnick, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TXcontraseña))
+                                .addComponent(CBtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(CBcago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TXnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(TXnick, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(TXcontraseña))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(CBcago, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(BTgrabar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BTeditar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton6)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(BTgrabar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BTeditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbcorreo)
+                        .addGap(16, 16, 16)
+                        .addComponent(TXcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,19 +387,12 @@ public class DLG_USUARIO extends javax.swing.JDialog {
                         .addComponent(TXurl, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BTsubirFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel6)
-                            .addComponent(TXurl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BTsubirFoto)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,14 +416,26 @@ public class DLG_USUARIO extends javax.swing.JDialog {
                                     .addComponent(CBcago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton7)))
                             .addComponent(jButton2))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbcorreo)
+                            .addComponent(TXcorreo))
+                        .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BTgrabar)
-                            .addComponent(jButton4)
-                            .addComponent(BTeditar)
-                            .addComponent(jButton6))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BTeditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel6)
+                            .addComponent(TXurl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(BTsubirFoto))
+                        .addGap(33, 33, 33)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -432,72 +453,37 @@ public class DLG_USUARIO extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BTsubirFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsubirFotoActionPerformed
-        // TODO add your handling code here:
-        ctrl.Foto(LBfoto, TXurl,280,114);
-    }//GEN-LAST:event_BTsubirFotoActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        Cancelar();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void CBcagoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CBcagoFocusGained
-        // TODO add your handling code here:
-        ctrl.LlenarCombo(CBcago, "select * from cargo", 2);
-    }//GEN-LAST:event_CBcagoFocusGained
-
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
         DLG_CARGOS dlg=new DLG_CARGOS(null,true);
         dlg.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void TBusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBusuarioMouseClicked
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        Pasar();
-        ctrl.ValidarFoto("usuario", "usuario.id_usuario", "firma",ctrl.ValorTabla(TBusuario, 0) , 3, LBfoto,280,114);
-    }//GEN-LAST:event_TBusuarioMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
-    private void TXnombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXnombreKeyPressed
+    private void BTeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTeditarActionPerformed
         // TODO add your handling code here:
-        ctrl.PulsarEnter(evt, TXnick);
-    }//GEN-LAST:event_TXnombreKeyPressed
+        Editar();
+    }//GEN-LAST:event_BTeditarActionPerformed
 
-    private void TXnickKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXnickKeyPressed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        ctrl.PulsarEnter(evt, TXcontraseña);
-    }//GEN-LAST:event_TXnickKeyPressed
-
-    private void TXcontraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXcontraseñaKeyPressed
-        // TODO add your handling code here:
-        ctrl.PulsarEnter(evt, CBtipo);
-    }//GEN-LAST:event_TXcontraseñaKeyPressed
-
-    private void CBtipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CBtipoKeyPressed
-        // TODO add your handling code here:
-        ctrl.PulsarEnter(evt, CBcago);
-    }//GEN-LAST:event_CBtipoKeyPressed
-
-    private void CBcagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CBcagoKeyPressed
-        // TODO add your handling code here:
-        ctrl.PulsarEnter(evt, BTgrabar);
-    }//GEN-LAST:event_CBcagoKeyPressed
+        Cancelar();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void BTgrabarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTgrabarActionPerformed
         // TODO add your handling code here:
         Grabar();
     }//GEN-LAST:event_BTgrabarActionPerformed
 
-    private void BTeditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTeditarActionPerformed
+    private void TBusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TBusuarioMouseClicked
         // TODO add your handling code here:
-        Editar();
-    }//GEN-LAST:event_BTeditarActionPerformed
+        Pasar();
+        ctrl.ValidarFoto("usuario", "usuario.id_usuario", "firma",ctrl.ValorTabla(TBusuario, 0) , 3, LBfoto,280,114);
+    }//GEN-LAST:event_TBusuarioMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -516,6 +502,41 @@ public class DLG_USUARIO extends javax.swing.JDialog {
             Cancelar();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void BTsubirFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTsubirFotoActionPerformed
+        // TODO add your handling code here:
+        ctrl.Foto(LBfoto, TXurl,280,114);
+    }//GEN-LAST:event_BTsubirFotoActionPerformed
+
+    private void CBcagoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CBcagoKeyPressed
+        // TODO add your handling code here:
+        ctrl.PulsarEnter(evt, BTgrabar);
+    }//GEN-LAST:event_CBcagoKeyPressed
+
+    private void CBcagoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_CBcagoFocusGained
+        // TODO add your handling code here:
+        ctrl.LlenarCombo(CBcago, "select * from cargo", 2);
+    }//GEN-LAST:event_CBcagoFocusGained
+
+    private void CBtipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CBtipoKeyPressed
+        // TODO add your handling code here:
+        ctrl.PulsarEnter(evt, CBcago);
+    }//GEN-LAST:event_CBtipoKeyPressed
+
+    private void TXcontraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXcontraseñaKeyPressed
+        // TODO add your handling code here:
+        ctrl.PulsarEnter(evt, CBtipo);
+    }//GEN-LAST:event_TXcontraseñaKeyPressed
+
+    private void TXnickKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXnickKeyPressed
+        // TODO add your handling code here:
+        ctrl.PulsarEnter(evt, TXcontraseña);
+    }//GEN-LAST:event_TXnickKeyPressed
+
+    private void TXnombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXnombreKeyPressed
+        // TODO add your handling code here:
+        ctrl.PulsarEnter(evt, TXnick);
+    }//GEN-LAST:event_TXnombreKeyPressed
 
     /**
      * @param args the command line arguments
@@ -568,6 +589,7 @@ public class DLG_USUARIO extends javax.swing.JDialog {
     private javax.swing.JLabel LBfoto;
     private javax.swing.JTable TBusuario;
     private javax.swing.JPasswordField TXcontraseña;
+    private javax.swing.JTextField TXcorreo;
     private javax.swing.JTextField TXnick;
     private javax.swing.JTextField TXnombre;
     private javax.swing.JTextField TXurl;
@@ -584,5 +606,6 @@ public class DLG_USUARIO extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbcorreo;
     // End of variables declaration//GEN-END:variables
 }

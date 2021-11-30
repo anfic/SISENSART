@@ -276,14 +276,14 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CBsolicitante, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(CBprioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3)
                                     .addComponent(lblArribo))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtArribo))
+                            .addComponent(txtArribo)
+                            .addComponent(CBsolicitante, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -317,7 +317,7 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
                 .addComponent(lblArribo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtArribo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -1060,8 +1060,8 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
     private javax.swing.JTextField TXbuscar_requerimiento;
     private javax.swing.JTextField TXcantidad;
     private javax.swing.JTextField TXcodigo_requerimiento;
-    private javax.swing.JCheckBox checkCronograma;
     private javax.swing.JTextField TXeett;
+    private javax.swing.JCheckBox checkCronograma;
     private datechooser.beans.DateChooserCombo dateChooserCombo1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
