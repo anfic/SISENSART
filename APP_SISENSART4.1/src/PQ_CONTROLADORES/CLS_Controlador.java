@@ -104,7 +104,7 @@ public class CLS_Controlador {
     public void GrabarData(String TABLA, String ATRIBUTOS, String REGISTROS) {
         try {
             Base.st = Base.conec.createStatement();
-            SQL1 = "insert into " + TABLA.toLowerCase() + " (" + ATRIBUTOS.toUpperCase() + ") values(" + REGISTROS + ")";
+            SQL1 = "insert into " + TABLA.toLowerCase() + " (" + ATRIBUTOS + ") values(" + REGISTROS.toUpperCase() + ")";
             Base.st.executeUpdate(SQL1);
 //            Base.st.close();
             System.out.println("Se guardó correctamente:\n" + SQL1);

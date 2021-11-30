@@ -35,7 +35,7 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         ctrl.ImagenFondo(desktopPane,"/PQ_IMAGENES/FONDO2.jpg");
         this.msg = msg;
-        this.setTitle("SISENSART  V-3.0- SISTEMA DE ENTRADAS Y SALIDAS DE ARTÍCULOS - LOGÍSTICA EMPRESARIAL."+msg);
+        this.setTitle("SISENSART  V-4.5- SISTEMA DE ENTRADAS Y SALIDAS DE ARTÍCULOS - LOGÍSTICA EMPRESARIAL."+msg);
     }
     
     @Override
