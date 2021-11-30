@@ -13,7 +13,8 @@ import PQ_CONTROLADORES.CLS_Controlador;
  */
 public class DLG_OBRAS extends javax.swing.JDialog {
 
-    CLS_Controlador ctrl= new CLS_Controlador();
+    CLS_Controlador ctrl = new CLS_Controlador();
+
     /**
      * Creates new form DLG_OBRAS
      */
@@ -21,37 +22,37 @@ public class DLG_OBRAS extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         ctrl.CerrarVentanaESC(this);
-        ctrl.LlenarCombo(cmbSede,"select * from sede ",2);
+        ctrl.LlenarCombo(cmbSede, "select * from sede ", 2);
     }
-    private void Guardar()
-    {
-        if(TXAdescripcion.getText().trim().length()==0)
-        {
+
+    private void Guardar() {
+        if (TXAdescripcion.getText().trim().length() == 0) {
             ctrl.mensaje.MensajeError("Ud. no ingresó el nombre de la obra.");
             TXAdescripcion.requestFocus();
-        }
-        else if(TXdireccion.getText().trim().length()==0)
-        {
+        } else if (TXdireccion.getText().trim().length() == 0) {
             ctrl.mensaje.MensajeError("Ud. no ingresó la dirección de la obra");
             TXdireccion.requestFocus();
-        }
-        else
-        {
-            String sede = cmbSede.getSelectedItem().toString();
-            if(txtcontrato.getText().isEmpty() || txtcontrato.getText().trim().length() == 0){
+        } else if (cmbSede.getSelectedIndex() == -1) {
+            ctrl.mensaje.MensajeAlerta("Seleccione la sede de la Obra.");
+            cmbSede.requestFocus();
+        } else if (txtcontrato.getText().trim().length() == 0) {
+            ctrl.mensaje.MensajeAlerta("registre el Nro de servicio de contrato.");
+            txtcontrato.requestFocus();
+        } else {
+            if (txtcontrato.getText().isEmpty() || txtcontrato.getText().trim().length() == 0) {
                 ctrl.mensaje.MensajeError("Ud. no ingresó el nro de contrato");
                 txtcontrato.requestFocus();
-            }else{
-                ctrl.GrabarData("OBRA","descripcion,direccion,estado,sede_idsede,nro_servicio_contrato", "'"+TXAdescripcion.getText().trim()+"','"+TXdireccion.getText().trim()+"',1,'"+ctrl.RetornarConsulta("select idsede from sede where descripcion ='"+sede+"'",1)+"','"+txtcontrato.getText()+"'");
-            Cancelar();
+            } else {
+                ctrl.GrabarData("obra", "descripcion,direccion,estado,sede_idsede,nro_servicio_contrato", "'"+TXAdescripcion.getText().trim()+"','"+TXdireccion.getText().trim()+"',1,'"+ctrl.ObtenerCodigo("sede", "descripcion", cmbSede.getSelectedItem().toString().trim(), 1)+"','"+txtcontrato.getText().trim()+"'");
+                Cancelar();
             }
         }
     }
-    private void Cancelar()
-    {
+
+    private void Cancelar() {
         TXAdescripcion.setText("");
         TXdireccion.setText("");
-        ctrl.LlenarCombo(cmbSede,"select * from sede ",2);
+        ctrl.LlenarCombo(cmbSede, "select * from sede ", 2);
         txtcontrato.setText("");
         TXAdescripcion.requestFocus();
     }
@@ -268,16 +269,14 @@ public class DLG_OBRAS extends javax.swing.JDialog {
 
     private void TXAdescripcionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXAdescripcionKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==evt.VK_ENTER)
-        {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             TXdireccion.requestFocus();
         }
     }//GEN-LAST:event_TXAdescripcionKeyPressed
 
     private void TXdireccionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXdireccionKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==evt.VK_ENTER)
-        {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             ctrl.PulsarEnter(evt, BTguardar);
         }
     }//GEN-LAST:event_TXdireccionKeyPressed
@@ -288,7 +287,7 @@ public class DLG_OBRAS extends javax.swing.JDialog {
 
     private void btnSedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSedeActionPerformed
         // TODO add your handling code here:
-        DLG_Mantenimiento_Sede sede = new DLG_Mantenimiento_Sede(null,true);
+        DLG_Mantenimiento_Sede sede = new DLG_Mantenimiento_Sede(null, true);
         sede.setVisible(true);
     }//GEN-LAST:event_btnSedeActionPerformed
 
@@ -298,7 +297,7 @@ public class DLG_OBRAS extends javax.swing.JDialog {
 
     private void cmbSedeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbSedeFocusGained
         // TODO add your handling code here:
-        ctrl.LlenarCombo(cmbSede,"select * from sede ",2);
+        ctrl.LlenarCombo(cmbSede, "select * from sede ", 2);
     }//GEN-LAST:event_cmbSedeFocusGained
 
     /**

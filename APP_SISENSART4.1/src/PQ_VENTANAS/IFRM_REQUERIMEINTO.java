@@ -73,7 +73,7 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
         else
         {
             String codigo=TBrequerimiento.getValueAt(TBrequerimiento.getSelectedRow(), 0).toString().trim();
-            ctrl.ActualizarData("REQUERIMIENTO", "estado=2", "id_requerimiento='"+codigo+"'");
+            ctrl.ActualizarData("requerimiento", "estado=2", "id_requerimiento='"+codigo+"'");
             TXcodigo_requerimiento.setText(codigo);
             CancelarDatosGeneralesRequerimiento();
             jTabbedPane1.setSelectedIndex(1);
@@ -149,7 +149,7 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
         }
         else
         {
-            ctrl.ActualizarData("REQUERIMIENTO","estado=3", "id_requerimiento='"+TXcodigo_requerimiento.getText().trim()+"'");
+            ctrl.ActualizarData("requerimiento","estado=3", "id_requerimiento='"+TXcodigo_requerimiento.getText().trim()+"'");
             reporte.Reporte_1Parametro_Imagen("RPT_REQUERIMIENTOS.jasper", "p_codigo", TXcodigo_requerimiento.getText().trim(), "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
             BTcancelar.doClick();
         }
@@ -279,15 +279,11 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(CBprioridad, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(lblArribo))
+                                    .addComponent(jLabel3))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtArribo)
                             .addComponent(CBsolicitante, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(dateChooserCombo1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -295,13 +291,11 @@ public class IFRM_REQUERIMEINTO extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                         .addComponent(checkCronograma)
                         .addGap(30, 30, 30))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblArribo)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtArribo))
-                        .addContainerGap())))
+                            .addComponent(jLabel2)
+                            .addComponent(lblArribo))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
