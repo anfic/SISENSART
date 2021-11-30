@@ -731,7 +731,7 @@ public class DLG_Detalle_Movimientos extends javax.swing.JDialog {
             ctrl.Base.conec.commit();
             ctrl.mensaje.MensajeSimple("Transacción de movimiento finalizado.");
             this.dispose();
-            reporte.Reporte_1Parametro_Imagen("RPT_Movimiento.jasper", "p_id", LBcodigo.getText().trim(), "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+            reporte.Reporte_1Parametro_Imagen("RPT_Movimiento.jasper", "p_id", LBcodigo.getText().trim(), "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
             FRM_Movimiento_Materiales.BTcancelar.doClick();
         } catch (SQLException e) {
             System.err.println("ERROR: " + e.getMessage());

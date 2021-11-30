@@ -254,7 +254,7 @@ public class DLG_Consulta_Entradas_Salidas_lamacen extends javax.swing.JDialog {
             for(int i=0;i<jTable1.getRowCount();i++)
             {
                 String Ucodigo=jTable1.getValueAt(i, 0).toString().trim();
-                reporte.Reporte_1Parametro_Imagen("RPT_Movimiento.jasper", "p_id", Ucodigo, "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+                reporte.Reporte_1Parametro_Imagen("RPT_Movimiento.jasper", "p_id", Ucodigo, "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
             }
         }
     }

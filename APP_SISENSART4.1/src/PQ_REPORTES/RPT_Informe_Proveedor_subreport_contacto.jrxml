@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RPT_Informe_Proveedor_subreport_contacto" pageWidth="450" pageHeight="802" columnWidth="450" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="a6e973a7-1901-4cc5-a3c1-97a2dc4a3dd4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_proveedor" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     contacto.`idcontacto` AS contacto_idcontacto,
+     contacto.`id_proveedor` AS contacto_id_proveedor,
+     contacto.`nombres` AS contacto_nombres,
+     contacto.`nro_cel` AS contacto_nro_cel,
+     contacto.`correo` AS contacto_correo
+FROM
+     `contacto` contacto
+where contacto.`id_proveedor` = $P{p_proveedor} group by contacto.`nro_cel`]]>
+	</queryString>
+	<field name="contacto_idcontacto" class="java.lang.Integer"/>
+	<field name="contacto_id_proveedor" class="java.lang.Integer"/>
+	<field name="contacto_nombres" class="java.lang.String"/>
+	<field name="contacto_nro_cel" class="java.lang.String"/>
+	<field name="contacto_correo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="37" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="450" height="35" forecolor="#990000" backcolor="#990000" uuid="b9aa7e86-f38a-49b7-933c-38a85b2ce1cb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="7" y="0" width="443" height="35" forecolor="#FFFFFF" uuid="9403f397-7a3d-4fa9-acbc-505c59217773"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTACTOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="169" height="20" forecolor="#FFFFFF" backcolor="#990000" uuid="5fbde393-40b8-48c2-bd3d-2f8038fd7e7d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="169" y="0" width="131" height="20" forecolor="#FFFFFF" backcolor="#990000" uuid="a858fa71-ad50-444f-9753-e12d017670de"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="300" y="0" width="150" height="20" forecolor="#FFFFFF" backcolor="#990000" uuid="a8c89033-b3ba-494a-ac7c-57e2812d35ee"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="1" width="169" height="20" forecolor="#FFFFFF" uuid="e3f25d03-b1ed-4446-9e4f-da626ef81115"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="169" y="1" width="131" height="20" forecolor="#FFFFFF" uuid="71c2bf84-caf2-452a-9af6-d2b20cd9375a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de Celular]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="1" width="150" height="20" forecolor="#FFFFFF" uuid="b6737e57-2365-4ce4-ac6b-1b2427025a07"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Correo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="7" y="0" width="162" height="20" uuid="b656b14e-8098-46a4-922f-b60be3eefd40"/>
+				<textFieldExpression><![CDATA[$F{contacto_nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="120" height="20" uuid="dd3928ad-220e-4788-85f9-d461f59a2651"/>
+				<textFieldExpression><![CDATA[$F{contacto_nro_cel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="311" y="0" width="139" height="20" uuid="4b526e7e-4ec2-430d-81c4-44bdc8d53848"/>
+				<textFieldExpression><![CDATA[$F{contacto_correo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="21" width="450" height="1" uuid="90e82ef5-9269-4eaa-bf15-ee47bbcfd792"/>
+			</line>
+		</band>
+	</detail>
+</jasperReport>

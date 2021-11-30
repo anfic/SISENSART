@@ -195,7 +195,7 @@ public class DLG_SEGUIMIENTO extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        reporte.Reporte_1Parametro_Imagen("RPT_REQUERIMIENTOS.jasper", "p_codigo", TXcodigo_requerimiento.getText().trim(), "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+        reporte.Reporte_1Parametro_Imagen("RPT_REQUERIMIENTOS.jasper", "p_codigo", TXcodigo_requerimiento.getText().trim(), "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void TXcodigo_requerimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXcodigo_requerimientoKeyPressed

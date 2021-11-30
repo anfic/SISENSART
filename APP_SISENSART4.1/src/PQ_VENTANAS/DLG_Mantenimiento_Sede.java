@@ -20,6 +20,7 @@ public class DLG_Mantenimiento_Sede extends javax.swing.JDialog {
     public DLG_Mantenimiento_Sede(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        ctrl.CerrarVentanaESC(this);
         Cancelar();
     }
 
@@ -46,7 +47,7 @@ public class DLG_Mantenimiento_Sede extends javax.swing.JDialog {
         TBalmacen = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Mantenimiento de Almacenes.");
+        setTitle("Mantenimiento de Sedes");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 

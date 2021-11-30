@@ -6,6 +6,7 @@
 package PQ_VENTANAS;
 
 import PQ_CONTROLADORES.CLS_Controlador;
+import PQ_CONTROLADORES.Reportes;
 
 /**
  *
@@ -17,6 +18,7 @@ public class DLG_Informe_Reporte extends javax.swing.JDialog {
      * Creates new form DLG_Informe_Reporte
      */
     CLS_Controlador ctrl=new CLS_Controlador();
+    Reportes rpt=new Reportes();
     public DLG_Informe_Reporte(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -162,7 +164,9 @@ public class DLG_Informe_Reporte extends javax.swing.JDialog {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        
+     this.dispose();
+        rpt.Reporte_1Parametro_Imagen("RPT_Informe_Proveedor.jasper", "p_proveedor", ctrl.ValorTabla(TBproveedor, 0), "p_logo","/PQ_IMAGENES/LOGO_01V.png");
+      
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**

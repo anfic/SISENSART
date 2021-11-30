@@ -159,7 +159,7 @@ public class DLG_Acumulados extends javax.swing.JDialog {
 
     private void BTreporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTreporteActionPerformed
         // TODO add your handling code here:
-        rpt.REP_4Param_1IMG("p_obra", "p_desde", "p_hasta", "p_moneda", cbobra.getSelectedItem().toString().trim(), ctrl.DevolverFechaJDateChooser(dtdesde), ctrl.DevolverFechaJDateChooser(dthasta), cbmoneda.getSelectedItem().toString().trim(), "report3.jasper", "p_logo",  "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+        rpt.REP_4Param_1IMG("p_obra", "p_desde", "p_hasta", "p_moneda", cbobra.getSelectedItem().toString().trim(), ctrl.DevolverFechaJDateChooser(dtdesde), ctrl.DevolverFechaJDateChooser(dthasta), cbmoneda.getSelectedItem().toString().trim(), "report3.jasper", "p_logo",  "/PQ_IMAGENES/LOGO_01V.png");
         this.dispose();
     }//GEN-LAST:event_BTreporteActionPerformed
 
