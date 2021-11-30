@@ -117,7 +117,7 @@ public class IFRM_ORDEN_COMPRA extends javax.swing.JInternalFrame {
             stmt2.executeUpdate();
             ctrl.Base.conec.commit();
             ctrl.mensaje.MensajeSimple("Transacción de salidas finalizado.");
-            reporte.Reporte_1Parametro_Imagen("RPT_Movimiento.jasper", "p_id", Ucodigo, "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+            reporte.Reporte_1Parametro_Imagen("RPT_Movimiento.jasper", "p_id", Ucodigo, "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
         } catch (SQLException e) {
             System.err.println("ERROR: " + e.getMessage());
             if (ctrl.Base.conec != null) {
@@ -1797,9 +1797,9 @@ public class IFRM_ORDEN_COMPRA extends javax.swing.JInternalFrame {
                     + "precio_letras='" + LBnumeros.getText().trim() + "',tipo_pago='" + CBpago.getSelectedItem().toString().substring(0, 1).trim() + "',"
                     + "observacion='" + TXobservacion.getText().trim() + "',estado=3,id_proveedor='" + TXproveedor.getText().trim() + "',id_requerimiento='" + CBreq.getSelectedItem().toString().trim() + "-" + TXrequerimiento.getText().trim() + "',solicitante='" + TXsolicitante.getText().trim() + "',obra='" + TXobra.getText().trim() + "',placa='" + TXtransporte.getText().trim() + "',descuento='" + TXdescuento.getText().trim() + "',tipo_documento='"+CBtipo_documento.getSelectedItem().toString().trim()+"'", "id_orden='" + TXorden.getText().trim() + "'");
             if (CBdocumento.getSelectedIndex() == 0) {
-                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_BOLETA.jasper", "p_codigo", TXorden.getText().trim(), "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_BOLETA.jasper", "p_codigo", TXorden.getText().trim(), "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
             } else {
-                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_FACTURA.jasper", "p_codigo", TXorden.getText().trim(), "p_logo", "/PQ_IMAGENES/LogoSantisimaCruzEdit.png");
+                reporte.Reporte_1Parametro_Imagen("ORDEN_COMPRA_FACTURA.jasper", "p_codigo", TXorden.getText().trim(), "p_logo", "/PQ_IMAGENES/LOGO_01V.png");
             }
             MovimientoEntradas();
             MovimientoSalidas();
