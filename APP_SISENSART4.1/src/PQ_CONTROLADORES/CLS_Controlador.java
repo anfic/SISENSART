@@ -113,7 +113,6 @@ public class CLS_Controlador {
         }
         r.gc();
     }
-    
 
     public void EliminarData(String TABLA, String Condicion) {
         try {
@@ -313,7 +312,7 @@ public class CLS_Controlador {
 //            mensaje.MensajeError("Error controlador consulta:\n"+e.getMessage());
 //        }
     }
-    
+
     public String RetornarConsulta(String consulta, int pos) {
         String return_string = "";
         try {
@@ -993,5 +992,35 @@ public class CLS_Controlador {
 
     public static Double RedondearDecimales(Double numero, Integer numeroDecimales) {
         return Math.round(numero * Math.pow(10, numeroDecimales)) / Math.pow(10, numeroDecimales);
+    }
+
+    public boolean ValidarRegistroTabla(JTable tb) {
+        boolean resp = false;
+        if (tb.getRowCount() == 0) {
+            mensaje.MensajeAlerta("No hay ningún dato.");
+        } else if (tb.getSelectedRow() == -1) {
+            mensaje.MensajeAlerta("Ud. no seleccionó nada.");
+        } else if (tb.getSelectedRowCount() > 1) {
+            mensaje.MensajeAlerta("Sólo seleccione un registro.");
+        } else {
+            resp = true;
+        }
+        return resp;
+    }
+    public void Amayusculas(KeyEvent e){
+        char c=e.getKeyChar();
+        if(Character.isLowerCase(c)){
+            String cad=(""+c).toUpperCase();
+            c=cad.charAt(0);
+            e.setKeyChar(c);
+        }
+    }
+    public void Aminusculas(KeyEvent e){
+        char c=e.getKeyChar();
+        if(Character.isUpperCase(c)){
+            String cad=(""+c).toLowerCase();
+            c=cad.charAt(0);
+            e.setKeyChar(c);
+        }
     }
 }

@@ -163,6 +163,9 @@ public class FRM_Login extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TXusuarioKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TXusuarioKeyTyped(evt);
+            }
         });
 
         jLabel3.setFont(new java.awt.Font("Lucida Bright", 0, 18)); // NOI18N
@@ -179,7 +182,7 @@ public class FRM_Login extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Lucida Bright", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("T, de Usuario:");
+        jLabel4.setText("T. de Usuario:");
 
         CBtipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SUPER ADMINISTRADOR", "GERENTE GENERAL", "ADMINISTRADOR LOGISTICO", "ADMINISTRADOR REQUIRIENTE", "USUARIO REGISTRADO" }));
         CBtipo.setSelectedIndex(-1);
@@ -210,9 +213,8 @@ public class FRM_Login extends javax.swing.JFrame {
                         .addGap(24, 24, 24)))
                 .addGroup(panelNice3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(CBtipo, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                    .addGroup(panelNice3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(TXcontraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                        .addComponent(TXusuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(TXcontraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                    .addComponent(TXusuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelNice3Layout.setVerticalGroup(
@@ -297,6 +299,11 @@ public class FRM_Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         ctrl.PulsarEnter(evt, BTlogeo);
     }//GEN-LAST:event_CBtipoKeyPressed
+
+    private void TXusuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXusuarioKeyTyped
+        // TODO add your handling code here:
+        ctrl.Amayusculas(evt);
+    }//GEN-LAST:event_TXusuarioKeyTyped
 
     /**
      * @param args the command line arguments
