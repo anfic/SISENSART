@@ -927,7 +927,8 @@ public class MDI_PRINCIPAL extends javax.swing.JFrame {
 
     private void menuOrdenServicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOrdenServicioActionPerformed
         // TODO add your handling code here:
-        
+        IFRM_OrdenServicio frm=new IFRM_OrdenServicio();
+        ctrl.AbrirInternalFrame(frm, desktopPane);
     }//GEN-LAST:event_menuOrdenServicioActionPerformed
 
     /**

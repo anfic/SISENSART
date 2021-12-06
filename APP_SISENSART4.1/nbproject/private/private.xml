@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/MDI_PRINCIPAL.java</file>
-            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/IFRM_REQUERIMEINTO.java</file>
-            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_CONTROLADORES/Conexion_BD.java</file>
-            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/IFRM_ORDEN_COMPRA.java</file>
-            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/DLG_MATERIALES.java</file>
-            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/RPT_MATERIAL_OBRA.java</file>
-            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/DLG_USUARIO.java</file>
-            <file>file:/D:/QualitySystems/Git-SISENSART/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/DLG_Banco.java</file>
+            <file>file:/D:/Andy%20Figueroa%20Castillo/Proyectos/32%20-%20QualitySystems/SISENSART_GIT/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/IFRM_OrdenServicio.java</file>
+            <file>file:/D:/Andy%20Figueroa%20Castillo/Proyectos/32%20-%20QualitySystems/SISENSART_GIT/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/DLG_DETALLE_ORDEN_POR_EVALUACION.java</file>
+            <file>file:/D:/Andy%20Figueroa%20Castillo/Proyectos/32%20-%20QualitySystems/SISENSART_GIT/SISENSART/APP_SISENSART4.1/src/PQ_VENTANAS/DLG_ORDEN_SERVICIO.java</file>
         </group>
     </open-files>
 </project-private>
