@@ -6,6 +6,7 @@
 package PQ_VENTANAS;
 
 import PQ_CONTROLADORES.CLS_Controlador;
+import static PQ_VENTANAS.DLG_DetalleServicio.LBnroservicio;
 
 /**
  *
@@ -13,7 +14,8 @@ import PQ_CONTROLADORES.CLS_Controlador;
  */
 public class IFRM_OrdenServicio extends javax.swing.JInternalFrame {
 
-    CLS_Controlador ctrl=new CLS_Controlador();
+    CLS_Controlador ctrl = new CLS_Controlador();
+
     /**
      * Creates new form IFRM_OrdenServicio
      */
@@ -45,6 +47,11 @@ public class IFRM_OrdenServicio extends javax.swing.JInternalFrame {
         jPopupMenu1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jMenuItem1.setText("Detallar Servicio");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(jMenuItem1);
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -149,7 +156,7 @@ public class IFRM_OrdenServicio extends javax.swing.JInternalFrame {
 
     private void BTnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTnuevoActionPerformed
         // TODO add your handling code here:
-        DLG_ORDEN_SERVICIO dlg=new DLG_ORDEN_SERVICIO(null,true);
+        DLG_ORDEN_SERVICIO dlg = new DLG_ORDEN_SERVICIO(null, true);
         dlg.setVisible(true);
     }//GEN-LAST:event_BTnuevoActionPerformed
 
@@ -157,6 +164,25 @@ public class IFRM_OrdenServicio extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_BTsalirActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        if (ctrl.mensaje.MsjeConfirmacion("Está seguro de querer detallar esta orden de servicio?") == 0) {
+            ctrl.ActualizarData("orden_servicio", "estado=2", "idordenservicio='" + ctrl.ValorTabla(TBordenservicio, 0) + "'");
+            DLG_DetalleServicio dlg = new DLG_DetalleServicio(null, true);
+            dlg.LBnroservicio.setText(ctrl.ValorTabla(TBordenservicio, 0));
+            dlg.LBproveedor.setText("Proveedor:\n" + ctrl.ValorTabla(TBordenservicio, 4));
+            dlg.LBproveedor1.setText("F.Pago:\n" + ctrl.ValorTabla(TBordenservicio, 2));
+            dlg.LBproveedor2.setText("F.Emisión:\n" + ctrl.ValorTabla(TBordenservicio, 1));
+            ctrl.VisualizarDataEscogidaEnTabla("detalle_servicio_iddetalleservicio,detalle_servicio_idordenservicio,detalle_servicio_descripcion_servicio,detalle_servicio_cantidad,detalle_servicio_preciounitario,detalle_servicio_preciototal", "v_detalle_servicio", DLG_DetalleServicio.jTable1, "where detalle_servicio_idordenservicio='"+ctrl.ValorTabla(TBordenservicio, 0)+"'");
+            dlg.setVisible(true);
+            Cancelar();
+        } else {
+            ctrl.mensaje.MensajeAlerta("Proceso cancelado");
+            Cancelar();
+        }
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
